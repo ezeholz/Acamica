@@ -293,7 +293,7 @@ footer .redes i {
   color: white;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 425px) {
   .titulo {
     margin-top: 5rem;
     margin-bottom: 1rem;
