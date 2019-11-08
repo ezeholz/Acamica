@@ -229,6 +229,12 @@ footer {
         margin-bottom: 1rem;
     }
 
+    .barra {
+        position: fixed;
+        top: 0;
+        z-index: 5;
+    }
+    
     .paralelogramo {
         height: 129rem;
         h1 {
