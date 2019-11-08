@@ -331,7 +331,8 @@ footer .redes i {
     height: 80rem;
   }
   #Nosotros img, #Nosotros .texto {
-    width: 100vw;
+    width: 32rem;
+    margin: 0 auto;
     position: relative;
     top: -20rem;
     z-index: 1;
