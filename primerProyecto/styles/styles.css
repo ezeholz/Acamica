@@ -311,6 +311,11 @@ footer .redes i {
     width: 298px;
     margin: 0 auto;
   }
+  .barra {
+    position: fixed;
+    top: 0;
+    z-index: 5;
+  }
   #Nosotros {
     display: -webkit-box;
     display: -ms-flexbox;
