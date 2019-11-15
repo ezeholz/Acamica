@@ -23,6 +23,7 @@ html {
     font-size: 16px;
     line-height: 22px;
     text-transform: uppercase;
+	box-sizing: content-box;
     a {
         color: black;
         text-decoration: none;
@@ -41,10 +42,13 @@ h2 {
 .titulo {
     margin: 120px 0 0 7.2vw;
     // padding: 35px 0 0 20px;
-    span{
-        color: blue;
-    }
 }
+
+.puntoFinal:after {
+    content: ".";
+    color: blue;
+}
+
 
 h1 {
     font-family: 'IBM Plex Sans', sans-serif;
