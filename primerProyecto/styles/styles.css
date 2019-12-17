@@ -23,7 +23,8 @@ html {
   font-size: 16px;
   line-height: 22px;
   text-transform: uppercase;
-  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
 }
 
 .button a {
@@ -145,6 +146,13 @@ nav a {
       align-content: space-around;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+}
+
+.episodios iframe {
+  width: 584px;
+  height: 232px;
+  border: 0px;
+  background-color: transparent;
 }
 
 #Nosotros {
@@ -300,6 +308,11 @@ footer .redes i {
     margin-top: 5rem;
     margin-bottom: 1rem;
   }
+  .barra {
+    position: fixed;
+    top: 0;
+    z-index: 5;
+  }
   .paralelogramo {
     height: 129rem;
   }
@@ -312,11 +325,6 @@ footer .redes i {
   .paralelogramo .episodios iframe {
     width: 298px;
     margin: 0 auto;
-  }
-  .barra {
-    position: fixed;
-    top: 0;
-    z-index: 5;
   }
   #Nosotros {
     display: -webkit-box;

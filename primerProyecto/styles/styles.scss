@@ -126,6 +126,12 @@ nav {
     justify-content: space-around;
     align-content: space-around;
     flex-wrap: wrap;
+    iframe {
+        width: 584px;  
+        height: 232px;  
+        border: 0px;  
+        background-color: transparent;
+    }
 }
 
 #Nosotros {
