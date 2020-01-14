@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+html {
+    font-size: 10px;
+}
+
+@import "claro.scss";
+@import "oscuro.scss";
+
+.barraSuperior {
+    display: block;
+    position: relative;
+    height: 23px;
+    p {
+        font-size: 12px;
+        color: white;
+        line-height: 20px;
+    }
+}
+
+nav {
+    margin: 3rem 14rem 2rem 9rem;
+    display: flex;
+    justify-content: space-between;
+    ul {
+        display: inline-flex;
+        list-style-type: none;
+        justify-content: space-between;
+        width: 40rem;
+        font-size: 16px;
+        button {
+            height: 3.6rem;
+            width: 14.4rem;
+        }
+        li.tema {
+            display: inline-flex;
+            button:first-child {width: 10.8rem;border-right: 1px solid gray;}
+            button:last-child {width: 3.6rem;border-left: 1px solid gray;}
+        }
+        li:last-child {
+            line-height: 3.5rem;
+        }
+    }
+}

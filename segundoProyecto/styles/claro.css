@@ -1,0 +1,17 @@
+.claro.barraSuperior {
+  background: -webkit-gradient(linear, right top, left top, from(#F7C9F3), to(#4180F6));
+  background: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%);
+}
+
+.claro a {
+  color: black;
+  text-decoration: none;
+}
+
+button.claro {
+  border: 1px solid black;
+  background: #997D97;
+  -webkit-box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+          box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+}
+/*# sourceMappingURL=claro.css.map */
