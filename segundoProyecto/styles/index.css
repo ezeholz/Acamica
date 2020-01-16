@@ -18,6 +18,17 @@ html {
   text-decoration: none;
 }
 
+.claro button {
+  border: 1px solid black;
+  background: #997D97;
+  -webkit-box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+          box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+}
+
+.claro.buscar + p.claro {
+  background-color: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%);
+}
+
 button.claro {
   border: 1px solid black;
   background: #997D97;
@@ -86,5 +97,17 @@ nav ul li.tema button:last-child {
 
 nav ul li:last-child {
   line-height: 3.5rem;
+}
+
+.buscar {
+  width: 80%;
+  margin: auto;
+}
+
+.buscar p {
+  width: 100%;
+  font-size: 14px;
+  line-height: 18px;
+  background-color: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%);
 }
 /*# sourceMappingURL=index.css.map */
