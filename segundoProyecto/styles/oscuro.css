@@ -1,4 +1,31 @@
-.oscuro nav {
+body.oscuro {
+  background: #110038;
+}
+
+.oscuro a, .oscuro.boton.tema {
   color: white;
+  text-decoration: none;
+}
+
+.oscuro button.claro {
+  border: 1px solid white;
+  background: #997D97;
+  -webkit-box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+          box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+}
+
+.oscuro button.claro.verMas {
+  background: #4180F6;
+}
+
+.oscuro.barraSuperior, .oscuro.buscar p.claro, .oscuro > ul.sugerencias li > p, .oscuro > ul#tendencias li > p {
+  background: -webkit-gradient(linear, right top, left top, from(#EE3EFE), to(#2E32FB));
+  background: linear-gradient(270deg, #EE3EFE 0%, #2E32FB 100%);
+}
+
+.oscuro.buscar {
+  background: #B4B4B4;
+  -webkit-box-shadow: inset -2px -2px 0 0 #8F8F8F, inset 2px 2px 0 0 #FFFFFF;
+          box-shadow: inset -2px -2px 0 0 #8F8F8F, inset 2px 2px 0 0 #FFFFFF;
 }
 /*# sourceMappingURL=oscuro.css.map */

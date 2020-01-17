@@ -73,7 +73,7 @@ nav {
     width: 90%;
     margin: auto;
     //border: 1px solid black;
-    box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
+    //box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
     .barraBuscar {
         margin: auto;
         margin: 1.2rem;
@@ -121,6 +121,7 @@ nav {
         box-shadow: inset -2px -2px 0 0 #E6DCE4, inset 2px 2px 0 0 #80687D;
         padding: 0.7rem 1.6rem;
         margin: 6.4rem 0 2rem;
+        background: white;
     }
 }
 
@@ -141,7 +142,7 @@ nav {
             &:before{content: "#";}
             & > img {margin-left: auto;}
         }
-        & > img {max-width: 18vw; margin: 4px;}
+        & > img {width: 18vw; margin: 4px;}
         .verMas {
             position: relative;
             width: 8.1rem;
@@ -155,10 +156,10 @@ nav {
     }
 }
 
-.tendencias {
+#tendencias {
     width: 100%;
     display: flex;
-    flex-direction: row wrap;
+    flex-flow: row wrap;
     list-style-type: none;
     justify-content: space-between;
     & > li.chica img {

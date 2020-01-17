@@ -1,5 +1,24 @@
+body.oscuro {
+    background: #110038;
+}
 .oscuro {
-    nav {
+    a, &.boton.tema {
         color: white;
+        text-decoration: none;
+    }
+    button.claro {
+        border: 1px solid white;
+        background: #997D97;
+        box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+        &.verMas {
+            background: #4180F6;
+        }
+    }
+    &.barraSuperior, &.buscar p.claro, & > ul.sugerencias li > p, & > ul#tendencias li > p {
+        background: linear-gradient(270deg, #EE3EFE 0%, #2E32FB 100%);
+    }
+    &.buscar {
+        background: #B4B4B4;
+        box-shadow: inset -2px -2px 0 0 #8F8F8F, inset 2px 2px 0 0 #FFFFFF;
     }
 }

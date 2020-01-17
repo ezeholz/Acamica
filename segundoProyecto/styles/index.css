@@ -39,13 +39,46 @@ p {
   background: #4180F6;
 }
 
-.claro.buscar p.claro, .claro > ul.sugerencias li > p, .claro > ul.tendencias li > p {
+.claro.buscar p.claro, .claro > ul.sugerencias li > p, .claro > ul#tendencias li > p {
   background: -webkit-gradient(linear, right top, left top, from(#F7C9F3), to(#4180F6));
   background: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%);
 }
 
-.oscuro nav {
+.claro.buscar {
+  background: #E6E6E6;
+  -webkit-box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
+          box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
+}
+
+body.oscuro {
+  background: #110038;
+}
+
+.oscuro a, .oscuro.boton.tema {
   color: white;
+  text-decoration: none;
+}
+
+.oscuro button.claro {
+  border: 1px solid white;
+  background: #997D97;
+  -webkit-box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+          box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+}
+
+.oscuro button.claro.verMas {
+  background: #4180F6;
+}
+
+.oscuro.barraSuperior, .oscuro.buscar p.claro, .oscuro > ul.sugerencias li > p, .oscuro > ul#tendencias li > p {
+  background: -webkit-gradient(linear, right top, left top, from(#EE3EFE), to(#2E32FB));
+  background: linear-gradient(270deg, #EE3EFE 0%, #2E32FB 100%);
+}
+
+.oscuro.buscar {
+  background: #B4B4B4;
+  -webkit-box-shadow: inset -2px -2px 0 0 #8F8F8F, inset 2px 2px 0 0 #FFFFFF;
+          box-shadow: inset -2px -2px 0 0 #8F8F8F, inset 2px 2px 0 0 #FFFFFF;
 }
 
 .barraSuperior {
@@ -115,8 +148,6 @@ nav ul li:last-child {
 .buscar {
   width: 90%;
   margin: auto;
-  -webkit-box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
-          box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
 }
 
 .buscar .barraBuscar {
@@ -179,6 +210,7 @@ nav ul li:last-child {
           box-shadow: inset -2px -2px 0 0 #E6DCE4, inset 2px 2px 0 0 #80687D;
   padding: 0.7rem 1.6rem;
   margin: 6.4rem 0 2rem;
+  background: white;
 }
 
 .sugerencias {
@@ -215,7 +247,7 @@ nav ul li:last-child {
 }
 
 .sugerencias li > img {
-  max-width: 18vw;
+  width: 18vw;
   margin: 4px;
 }
 
@@ -230,30 +262,30 @@ nav ul li:last-child {
   color: white;
 }
 
-.tendencias {
+#tendencias {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row wrap;
-          flex-direction: row wrap;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
   list-style-type: none;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
 
-.tendencias > li.chica img {
+#tendencias > li.chica img {
   width: 28.8rem;
 }
 
-.tendencias > li.grande img {
+#tendencias > li.grande img {
   width: 59.2rem;
 }
 
-.tendencias p {
+#tendencias p {
   position: relative;
   bottom: 20px;
   font-weight: 700;
@@ -262,7 +294,7 @@ nav ul li:last-child {
   z-index: -1;
 }
 
-.tendencias img:hover ~ p {
+#tendencias img:hover ~ p {
   z-index: 1;
 }
 
