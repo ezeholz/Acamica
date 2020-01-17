@@ -8,6 +8,16 @@ html {
   font-size: 10px;
 }
 
+body, button {
+  font-family: 'Chakra Petch', sans-serif;
+}
+
+p {
+  font-size: 14px;
+  color: white;
+  line-height: 16px;
+}
+
 .claro.barraSuperior {
   background: -webkit-gradient(linear, right top, left top, from(#F7C9F3), to(#4180F6));
   background: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%);
@@ -18,22 +28,20 @@ html {
   text-decoration: none;
 }
 
-.claro button {
+.claro button.claro {
   border: 1px solid black;
   background: #997D97;
   -webkit-box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
           box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
 }
 
-.claro.buscar + p.claro {
-  background-color: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%);
+.claro button.claro.verMas {
+  background: #4180F6;
 }
 
-button.claro {
-  border: 1px solid black;
-  background: #997D97;
-  -webkit-box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
-          box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+.claro.buscar p.claro, .claro > ul.sugerencias li > p, .claro > ul.tendencias li > p {
+  background: -webkit-gradient(linear, right top, left top, from(#F7C9F3), to(#4180F6));
+  background: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%);
 }
 
 .oscuro nav {
@@ -48,12 +56,14 @@ button.claro {
 
 .barraSuperior p {
   font-size: 12px;
-  color: white;
   line-height: 20px;
 }
 
 nav {
-  margin: 3rem 14rem 2rem 9rem;
+  margin: auto;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  width: 90%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -70,7 +80,6 @@ nav ul {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  width: 40rem;
   font-size: 16px;
 }
 
@@ -79,18 +88,22 @@ nav ul button {
   width: 14.4rem;
 }
 
-nav ul li.tema {
+nav ul li {
+  padding: 0 1rem;
+}
+
+nav ul button.tema {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
 }
 
-nav ul li.tema button:first-child {
+nav ul button.tema div:first-child {
   width: 10.8rem;
   border-right: 1px solid gray;
 }
 
-nav ul li.tema button:last-child {
+nav ul button.tema div:last-child {
   width: 3.6rem;
   border-left: 1px solid gray;
 }
@@ -100,14 +113,184 @@ nav ul li:last-child {
 }
 
 .buscar {
-  width: 80%;
+  width: 90%;
   margin: auto;
+  -webkit-box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
+          box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
+}
+
+.buscar .barraBuscar {
+  margin: auto;
+  margin: 1.2rem;
+  padding-bottom: 1.2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.buscar .barraBuscar input {
+  -webkit-box-flex: 3;
+      -ms-flex-positive: 3;
+          flex-grow: 3;
+  margin: 0 0.8rem;
+  border: 1px solid #979797;
+  -webkit-box-shadow: inset -2px -2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000000;
+          box-shadow: inset -2px -2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000000;
+  padding: 1.3rem 1.6rem;
+}
+
+.buscar .barraBuscar button {
+  height: 3.6rem;
+  width: 10.2rem;
+  margin: 1rem;
+  border: 1px solid #808080;
+  -webkit-box-shadow: inset -1px -1px 0 0 #B4B4B4, inset 1px 1px 0 0 #FFFFFF;
+          box-shadow: inset -1px -1px 0 0 #B4B4B4, inset 1px 1px 0 0 #FFFFFF;
+  text-align: left;
+  font-size: 16px;
+  color: #B4B4B4;
+  line-height: 18px;
+}
+
+.buscar .barraBuscar button img {
+  padding: 0 1rem;
 }
 
 .buscar p {
-  width: 100%;
+  width: auto;
+  font-size: 16px;
+  line-height: 22px;
+  padding-left: 1.3rem;
+  margin: 0.3rem;
+}
+
+.divisiones {
+  width: 90%;
+  margin: auto;
+}
+
+.divisiones > p {
+  display: block;
   font-size: 14px;
   line-height: 18px;
-  background-color: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%);
+  color: black;
+  border: 1px solid #E6BBE2;
+  -webkit-box-shadow: inset -2px -2px 0 0 #E6DCE4, inset 2px 2px 0 0 #80687D;
+          box-shadow: inset -2px -2px 0 0 #E6DCE4, inset 2px 2px 0 0 #80687D;
+  padding: 0.7rem 1.6rem;
+  margin: 6.4rem 0 2rem;
+}
+
+.sugerencias {
+  width: 100%;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  list-style-type: none;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.sugerencias li {
+  max-width: 18.8vw;
+}
+
+.sugerencias li p {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.sugerencias li p:before {
+  content: "#";
+}
+
+.sugerencias li p > img {
+  margin-left: auto;
+}
+
+.sugerencias li > img {
+  max-width: 18vw;
+  margin: 4px;
+}
+
+.sugerencias li .verMas {
+  position: relative;
+  width: 8.1rem;
+  height: 3.4rem;
+  bottom: calc(3.4rem + 15px);
+  left: 7px;
+  font-size: 14px;
+  line-height: 18px;
+  color: white;
+}
+
+.tendencias {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row wrap;
+          flex-direction: row wrap;
+  list-style-type: none;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.tendencias > li.chica img {
+  width: 28.8rem;
+}
+
+.tendencias > li.grande img {
+  width: 59.2rem;
+}
+
+.tendencias p {
+  position: relative;
+  bottom: 20px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  z-index: -1;
+}
+
+.tendencias img:hover ~ p {
+  z-index: 1;
+}
+
+.mostrar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+nav ul ul {
+  display: none;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  list-style-type: none;
+  height: 10.2rem;
+  width: 17rem;
+  position: absolute;
+  background: white;
+  right: 18rem;
+  top: 9rem;
+}
+
+nav ul ul li {
+  width: 90%;
 }
 /*# sourceMappingURL=index.css.map */

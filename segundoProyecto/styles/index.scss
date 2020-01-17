@@ -8,6 +8,16 @@ html {
     font-size: 10px;
 }
 
+body, button {
+    font-family: 'Chakra Petch', sans-serif;
+}
+
+p {
+    font-size: 14px;
+    color: white;
+    line-height: 16px;
+}
+
 @import "claro.scss";
 @import "oscuro.scss";
 
@@ -17,29 +27,41 @@ html {
     height: 23px;
     p {
         font-size: 12px;
-        color: white;
         line-height: 20px;
     }
 }
 
 nav {
-    margin: 3rem 14rem 2rem 9rem;
+    //margin: 3rem 14rem 2rem 9rem;
+    margin: auto;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    width: 90%;
     display: flex;
     justify-content: space-between;
     ul {
         display: inline-flex;
         list-style-type: none;
         justify-content: space-between;
-        width: 40rem;
+        //width: 25%;
         font-size: 16px;
         button {
             height: 3.6rem;
             width: 14.4rem;
         }
-        li.tema {
+        li {
+            padding: 0 1rem;
+        }
+        button.tema {
             display: inline-flex;
-            button:first-child {width: 10.8rem;border-right: 1px solid gray;}
-            button:last-child {width: 3.6rem;border-left: 1px solid gray;}
+            div:first-child {
+                width: 10.8rem;
+                border-right: 1px solid gray;
+            }
+            div:last-child {
+                width: 3.6rem;
+                border-left: 1px solid gray;
+            }
         }
         li:last-child {
             line-height: 3.5rem;
@@ -48,11 +70,135 @@ nav {
 }
 
 .buscar {
-    width: 80%;
+    width: 90%;
     margin: auto;
+    //border: 1px solid black;
+    box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
+    .barraBuscar {
+        margin: auto;
+        margin: 1.2rem;
+        padding-bottom: 1.2rem;
+        //width: 98%;
+        display: flex;
+        input {
+            flex-grow: 3;
+            margin: 0 0.8rem;
+            border: 1px solid #979797;
+            box-shadow: inset -2px -2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000000;
+            padding: 1.3rem 1.6rem;
+        }
+        button {
+            height: 3.6rem;
+            width: 10.2rem;
+            margin: 1rem;
+            border: 1px solid #808080;
+            box-shadow: inset -1px -1px 0 0 #B4B4B4, inset 1px 1px 0 0 #FFFFFF;
+            text-align: left;
+            img {padding: 0 1rem;}
+            font-size: 16px;
+            color: #B4B4B4;
+            line-height: 18px;
+        }
+    }
     p {
-        width: 100%;
+        width: auto;
+        font-size: 16px;
+        line-height: 22px;
+        padding-left: 1.3rem;
+        margin: 0.3rem;
+    }
+}
+
+.divisiones {
+    width: 90%;
+    margin: auto;
+    & > p { // hijo directo
+        display: block;
         font-size: 14px;
         line-height: 18px;
+        color: black;
+        border: 1px solid #E6BBE2;
+        box-shadow: inset -2px -2px 0 0 #E6DCE4, inset 2px 2px 0 0 #80687D;
+        padding: 0.7rem 1.6rem;
+        margin: 6.4rem 0 2rem;
+    }
+}
+
+.sugerencias {
+    width: 100%;
+    display: inline-flex;
+    list-style-type: none;
+    justify-content: space-between;
+    li {
+        max-width: 18.8vw;
+        p {
+            width: 100%;
+            display: flex;
+            font-weight: 700;
+            //justify-content: space-between;
+            font-size: 14px;
+            line-height: 18px;
+            &:before{content: "#";}
+            & > img {margin-left: auto;}
+        }
+        & > img {max-width: 18vw; margin: 4px;}
+        .verMas {
+            position: relative;
+            width: 8.1rem;
+            height: 3.4rem;
+            bottom: calc(3.4rem + 15px);
+            left: 7px;
+            font-size: 14px;
+            line-height: 18px;
+            color: white;
+        }
+    }
+}
+
+.tendencias {
+    width: 100%;
+    display: flex;
+    flex-direction: row wrap;
+    list-style-type: none;
+    justify-content: space-between;
+    & > li.chica img {
+        width: 28.8rem;
+    }
+    & > li.grande img {
+        width: 59.2rem;
+    }
+    p {
+        position: relative;
+        bottom: 20px;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 18px;
+        z-index: -1;
+    }
+    img:hover ~ p {
+        z-index: 1;
+    }
+}
+
+// Opciones extras activas
+
+.mostrar {
+    display: flex;
+}
+
+nav ul ul {
+    display: none;
+    //display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    list-style-type: none;
+    height: 10.2rem;
+    width: 17rem;
+    position: absolute;
+    background: white;
+    right: 18rem;
+    top: 9rem;
+    li {
+        width: 90%;
     }
 }
