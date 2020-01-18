@@ -39,7 +39,7 @@ while(sugerencias.length!=4) {
 
 async function l1() {
 
-    fetch("http://worried-passive.glitch.me/counter")
+    fetch("https://worried-passive.glitch.me/counter")
         .then(response => {return response.json()})
         .then(json => {
             var texto = "¡Bienvenidos/as a Guifos.com! ——————Donde los gifs están.////// Número de visitas: " + json.visit
