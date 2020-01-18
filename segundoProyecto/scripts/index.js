@@ -38,6 +38,14 @@ while(sugerencias.length!=4) {
 }
 
 async function l1() {
+
+    fetch("http://worried-passive.glitch.me/counter")
+        .then(response => {return response.json()})
+        .then(json => {
+            var texto = "¡Bienvenidos/as a Guifos.com! ——————Donde los gifs están.////// Número de visitas: " + json.visit
+            document.getElementsByClassName("barraSuperior")[0].childNodes[1].innerText = texto
+        })
+
     for(i=1;i<=4;i++) {
         //console.log(i);
         document.getElementById("sug" + i).innerText = sugerencias[i - 1];
