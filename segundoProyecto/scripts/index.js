@@ -41,7 +41,7 @@ async function l1() {
     for(i=1;i<=4;i++) {
         //console.log(i);
         document.getElementById("sug" + i).innerText = sugerencias[i - 1];
-        await fetch("http://api.giphy.com/v1/gifs/search?api_key=HAH9qg4gGd6m3JwsSJUWkAL6mvkcEVBp&limit=25&q="+sugerencias[i - 1])
+        await fetch("https://api.giphy.com/v1/gifs/search?api_key=HAH9qg4gGd6m3JwsSJUWkAL6mvkcEVBp&limit=25&q="+sugerencias[i - 1])
             .then(response => {return response.json();})
             .then(json => {
                 //console.log(json);
@@ -59,7 +59,7 @@ async function l1() {
 
     // Tendencias
 
-    fetch("http://api.giphy.com/v1/gifs/trending?api_key=HAH9qg4gGd6m3JwsSJUWkAL6mvkcEVBp&limit=50").then(response => {return response.json();})
+    fetch("https://api.giphy.com/v1/gifs/trending?api_key=HAH9qg4gGd6m3JwsSJUWkAL6mvkcEVBp&limit=50").then(response => {return response.json();})
     .then(json => {
         var grandes = 4; // Con respecto a las chicas
         var chicas = 0;
