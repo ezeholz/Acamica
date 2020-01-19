@@ -264,6 +264,7 @@ nav ul li:last-child {
 
 #tendencias {
   width: 100%;
+  overflow: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -277,12 +278,12 @@ nav ul li:last-child {
           justify-content: space-between;
 }
 
-#tendencias > li.chica img {
-  width: 28.8rem;
+#tendencias > li {
+  margin: auto;
 }
 
-#tendencias > li.grande img {
-  width: 59.2rem;
+#tendencias > li img {
+  height: 32vh;
 }
 
 #tendencias p {

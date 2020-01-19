@@ -158,15 +158,19 @@ nav {
 
 #tendencias {
     width: 100%;
+    //height: 120vh;
+    overflow: hidden;
     display: flex;
     flex-flow: row wrap;
     list-style-type: none;
     justify-content: space-between;
-    & > li.chica img {
-        width: 28.8rem;
-    }
-    & > li.grande img {
-        width: 59.2rem;
+    & > li {
+        margin: auto;
+        img {
+            //height: 33rem;
+            height: 32vh;
+            //width: 28.8rem;
+        }
     }
     p {
         position: relative;
@@ -175,6 +179,7 @@ nav {
         font-size: 14px;
         line-height: 18px;
         z-index: -1;
+        //overflow: hidden;
     }
     img:hover ~ p {
         z-index: 1;
