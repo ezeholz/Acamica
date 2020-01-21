@@ -15,27 +15,37 @@
         <p>¡Bienvenidos/as a Guifos.com! ——————Donde los gifs están.</p>
     </div>
     <nav>
-        <img src="./images/gifOF_logo.png" alt="logo">
+        <img src="./images/gifOF_logo.png" alt="logo" onclick="location.href = './index.html'">
         <ul>
-            <li><button class="boton claro" onclick="location.href='./crear.html'">Crear Guifos</button></li>
-            <li><button class="boton claro tema drop" onclick="abrirTemas()"><div class="drop">Elegir tema</div><div class="drop"><img src="./images/dropdown.svg" alt="" class="drop"></div></button></li>
-            <li>
+            <li><button class="claro" onclick="location.href='./misGifos.html?modo=crear'">Crear Guifos</button></li>
+            <li class="relativo">
                 <ul id="menuTemas">
-                    <li><button class="drop" onclick="cambiarTema();abrirTemas()" disabled>Sailor Day</button></li>
-                    <li><button class="drop" onclick="cambiarTema();abrirTemas()">Sailor Night</button></li>
+                    <li><button class="drop" onclick="cambiarTema();abrirMenu('menuTemas')" disabled>Sailor Day</button></li>
+                    <li><button class="drop" onclick="cambiarTema();abrirMenu('menuTemas')">Sailor Night</button></li>
                 </ul>
             </li>
+            <li><button class="claro tema drop" onclick="abrirMenu('menuTemas')"><div class="drop">Elegir tema</div><div class="drop"><img src="./images/dropdown.svg" alt="" class="drop"></div></button></li>
             <li><a href="./misGifos.html">Mis Guifos</a></li>
         </ul>
     </nav>
     <div class="claro buscar">
         <p class="claro">Buscar</p>
-        <div class="barraBuscar">
-            <input type="text" placeholder="Busca gifs, hashtags, temas, busca lo que quieras…">
-            <button><img src="./images/lupa_inactive.svg" alt="lupa">Buscar</button>
+        <div class="relativo">
+            <div class="autofill claro buscar" id="autofill">
+                <button class="claro">hola</button>
+                <button class="claro">hola</button>
+                <button class="claro">hola</button>
+            </div>
+        </div>
+        <div class="barraBuscar" >
+            <input type="text" placeholder="Busca gifs, hashtags, temas, busca lo que quieras…" id="barBuscar" autocomplete="off">
+            <button onclick="search(document.getElementById('barBuscar').value)"><img src="./images/lupa_inactive.svg" alt="lupa">Buscar</button>
         </div>
     </div>
-    <div class="claro divisiones">
+    <div hidden>
+        <!-- botones para la busqueda -->
+    </div>
+    <div class="claro divisiones busqueda">
         <p>Hoy te sugerimos:</p>
         <ul class="sugerencias">
             <li><p id="sug1"><img src="./images/button%20close.svg" alt="button close"></p><img src="https://media.giphy.com/media/RHEqKwRZDwFKE/giphy.gif" alt="rec1" id="sugImg1"><button class="verMas claro" id="sugBtn1">Ver más...</button></li>
@@ -44,13 +54,19 @@
             <li><p id="sug4"><img src="./images/button%20close.svg" alt="button close"></p><img src="https://media.giphy.com/media/RHEqKwRZDwFKE/giphy.gif" alt="rec4" id="sugImg4"><button class="verMas claro" id="sugBtn4">Ver más...</button></li>
         </ul>
     </div>
-    <div class="claro divisiones">
+    <div class="claro divisiones busqueda">
         <p>Tendencias:</p>
         <ul id="tendencias">
             <!-- <li><img src="http://tiny.cc/v1ntiz" alt="gif"><p>#Refreshing</p></li> -->
         </ul>
     </div>
+    <div class="claro divisiones busqueda" hidden>
+        <p>Resultados de busqueda de</p>
+        <ul id="buscadas">
+            <!-- <li><img src="http://tiny.cc/v1ntiz" alt="gif"><p>#Refreshing</p></li> -->
+        </ul>
+    </div>
     <script src="./scripts/index.js"></script>
-    <script>index()</script>
+    <script>sugeridos()</script>
 </body>
 </html>

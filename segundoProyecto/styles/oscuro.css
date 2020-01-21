@@ -2,7 +2,7 @@ body.oscuro {
   background: #110038;
 }
 
-.oscuro a, .oscuro.boton.tema {
+.oscuro a, .oscuro li > button.oscuro {
   color: white;
   text-decoration: none;
 }
@@ -18,7 +18,7 @@ body.oscuro {
   background: #4180F6;
 }
 
-.oscuro.barraSuperior, .oscuro.buscar p.claro, .oscuro > ul.sugerencias li > p, .oscuro > ul#tendencias li > p {
+.oscuro.barraSuperior, .oscuro.buscar p.claro, .oscuro > ul.sugerencias li > p, .oscuro > ul#tendencias li > p, .oscuro > ul#buscadas li > p {
   background: -webkit-gradient(linear, right top, left top, from(#EE3EFE), to(#2E32FB));
   background: linear-gradient(270deg, #EE3EFE 0%, #2E32FB 100%);
 }
@@ -27,5 +27,9 @@ body.oscuro {
   background: #B4B4B4;
   -webkit-box-shadow: inset -2px -2px 0 0 #8F8F8F, inset 2px 2px 0 0 #FFFFFF;
           box-shadow: inset -2px -2px 0 0 #8F8F8F, inset 2px 2px 0 0 #FFFFFF;
+}
+
+.oscuro.buscar.autofill > button {
+  background: #B4B4B4;
 }
 /*# sourceMappingURL=oscuro.css.map */
