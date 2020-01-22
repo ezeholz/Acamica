@@ -288,7 +288,7 @@ nav ul li:last-child {
   color: white;
 }
 
-#tendencias, #buscadas {
+#tendencias, #buscadas, #misGifos {
   width: 100%;
   overflow: hidden;
   display: -webkit-box;
@@ -304,15 +304,15 @@ nav ul li:last-child {
           justify-content: space-between;
 }
 
-#tendencias > li, #buscadas > li {
+#tendencias > li, #buscadas > li, #misGifos > li {
   margin: auto;
 }
 
-#tendencias > li img, #buscadas > li img {
+#tendencias > li img, #buscadas > li img, #misGifos > li img {
   height: 32vh;
 }
 
-#tendencias p, #buscadas p {
+#tendencias p, #buscadas p, #misGifos p {
   position: relative;
   bottom: 20px;
   font-weight: 700;
@@ -321,7 +321,7 @@ nav ul li:last-child {
   z-index: -1;
 }
 
-#tendencias img:hover ~ p, #buscadas img:hover ~ p {
+#tendencias img:hover ~ p, #buscadas img:hover ~ p, #misGifos img:hover ~ p {
   z-index: 1;
 }
 

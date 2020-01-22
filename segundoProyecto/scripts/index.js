@@ -36,6 +36,8 @@ function ratio(w,h) {
     return Math.ceil(Math.ceil(w / h)-Math.ceil(h / w))
 }
 
+// borrar ultimos li para que quede parejo al final
+
 // Sugerencias
 
 
@@ -47,6 +49,16 @@ function fetchSug() {
     var sugerencias = localStorage.getItem('lastSearchs').split(';')
     sugerencias.splice(sugerencias.length-1,1)
     return sugerencias
+}
+
+function fetchGifs() {
+    switch(localStorage.getItem('misGuifos')){
+        case null: localStorage.setItem('misGuifos',"");return "";break;
+        case "": return ""; break;
+        default: var misGuifos = localStorage.getItem('misGuifos').split(';');break;
+    }
+    misGuifos.splice(sugerencias.length-1,1)
+    return misGuifos
 }
 
 var sugerencias = fetchSug()
@@ -216,10 +228,17 @@ function search(texto) {
 
 // misGifos
 
+// mala librerias, el link está en slack, hay que buscar los ejemplos
+// https://github.com/muaz-khan/RecordRTC/blob/master/simple-demos/RecordRTCPromisesHandler.html
+
 if(document.location.pathname.includes('misGifos.html')){
     function modo() {
         var params = new URLSearchParams(location.search)
         if(params.get('modo') == 'crear'){return true}
         else {return false}
     }
+
+    var misGuifos = fetchGifs()
+
+
 }
