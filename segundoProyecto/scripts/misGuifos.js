@@ -4,6 +4,16 @@ function modo() {
     else {return false}
 }
 
+function fetchGifs() {
+    switch(localStorage.getItem('misGuifos')){
+        case null: localStorage.setItem('misGuifos',"");return "";break;
+        case "": return ""; break;
+        default: var misGuifos = localStorage.getItem('misGuifos').split(';');break;
+    }
+    misGuifos.splice(sugerencias.length-1,1)
+    return misGuifos
+}
+
 var misGuifos = fetchGifs()
 const video = document.querySelector('video');
 
@@ -40,7 +50,7 @@ async function parar() {
 
 async function stopRecordingCallback() {
     video.srcObject = null;
-    let blob = await recorder.getBlob();
+    var blob = await recorder.getBlob();
     video.src = URL.createObjectURL(blob);
     recorder.stream.getTracks(t => t.stop());
 
@@ -50,3 +60,30 @@ async function stopRecordingCallback() {
     recorder = null;
 }
 
+async function subir() {
+    await fetch('https://upload.giphy.com/v1/gifs?api_key=HAH9qg4gGd6m3JwsSJUWkAL6mvkcEVBp&source_post_url='+video.src)
+    .then(function (response) {return response.json()})
+    .then(function (json) {
+        console.log(json)
+        if(json.data.status == 200) {
+            localStorage.setItem('misGuifos',json.data.response_id + ',' + misGuifos)
+            misGuifos = fetchGifs()
+        }
+        document.getElementById('descargar').setAttribute('onclick','invokeSaveAsDialog(blob,TuGuifo.gif)');
+        document.getElementById('copiar').setAttribute('onclick','copiar()');
+    })
+}
+
+async function copiar() {
+    await fetch('api.giphy.com/v1/gifs/'+ misGuifos.split(',')[0] +'?api_key=HAH9qg4gGd6m3JwsSJUWkAL6mvkcEVBp')
+    .then(function(response) {response.json()})
+    .then(function(json) {
+        navigator.clipboard.writeText(json.data.url).then(function() {
+            console.log('Async: Copying to clipboard was successful!');
+        }, function(err) {
+            console.error('Async: Could not copy text: ', err);
+        });
+        document.getElementById("subido").children[0].setAttribute("src",json.data.images.downsized.url)
+        document.getElementById("subido").children[0].setAttribute("onclick","location.href='"+json.data.url+"'")
+    })
+}

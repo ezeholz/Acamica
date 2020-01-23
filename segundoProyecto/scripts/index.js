@@ -51,16 +51,6 @@ function fetchSug() {
     return sugerencias
 }
 
-function fetchGifs() {
-    switch(localStorage.getItem('misGuifos')){
-        case null: localStorage.setItem('misGuifos',"");return "";break;
-        case "": return ""; break;
-        default: var misGuifos = localStorage.getItem('misGuifos').split(';');break;
-    }
-    misGuifos.splice(sugerencias.length-1,1)
-    return misGuifos
-}
-
 var sugerencias = fetchSug()
 
 if(sugerencias.length < 4) {localStorage.setItem('lastSearchs',
