@@ -15,7 +15,10 @@
         <p>¡Bienvenidos/as a Guifos.com! ——————Donde los gifs están.</p>
     </div>
     <nav>
-        <img src="./images/gifOF_logo.png" alt="logo" onclick="location.href = './index.html'">
+        <div>
+            <img src="./images/arrow.svg" alt="back" onclick="location.href = './index.html'" class="flecha">
+            <img src="./images/gifOF_logo.png" alt="logo" onclick="location.href = './index.html'">
+        </div>
         <ul>
             <li><button class="claro" onclick="location.href='./misGifos.html?modo=crear'">Crear Guifos</button></li>
             <li class="relativo">
@@ -28,15 +31,42 @@
             <li><a href="./misGifos.html">Mis Guifos</a></li>
         </ul>
     </nav>
-    <div>
-
+    <div class="crear claro">
+        <p class="claro">Crear Guifos</p>
+        <img src="./images/window img.png" alt="window">
+        <div class="textCrear">
+            <p>Aquí podrás crear tus propios guifos</p>
+            <p>Crear tu <i><strong>guifo</strong></i> es muy fácil, graba cualquier imagen con tu cámara y obtén guifos personalizados. Los pasos para crear tu guifo son:</p>
+            <ol> 
+                <li>Dar permisos de acceso a la cámara (sólo por el tiempo de uso)</li>
+                <li>Capturar tu momento guifo</li>
+                <li>Revisar el momento</li>
+                <li>Listo para subir y compartir!</li>
+            </ol>
+            <p>¿Quieres comenzar a crear tu guifo ahora?</p>
+        </div>
+        <div class="botones">
+            <button class="claro cancelar">Cancelar</button>
+            <button class="claro comenzar" onclick="empezarGuifo();">Comenzar</button>
+        </div>
+    </div><img src="./images/recording_dark.svg" alt="">
+    <div class="captura claro" hidden>
+        <p class="claro">Un chequeo antes de empezar<img src="./images/button%20close.svg" alt="button close"></p>
+        <video src="" controls autoplay></video>
+        <div class="botones">
+            <button class="claro cancelar repetir" hidden>Repetir Captura</button>
+            <button class="claro partido subir"><div><img src="./images/camera.svg" alt="camara"></div><div>Capturar</div></button>
+        </div>
     </div>
-    <div class="claro divisiones">
+    <div class="claro divisiones misGuifos">
         <p>Mis GuifOS</p>
         <ul id="misGifos">
             <!-- <li><img src="http://tiny.cc/v1ntiz" alt="gif"><p>#Refreshing</p></li> -->
         </ul>
     </div>
+    <script src="./scripts/RecordRTC.js"></script>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/misGuifos.js"></script>
+    
 </body>
 </html>

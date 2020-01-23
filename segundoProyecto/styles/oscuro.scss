@@ -15,7 +15,7 @@ body.oscuro {
         }
     }
     &.barraSuperior, &.buscar p.claro, & > ul.sugerencias li > p, & > ul#tendencias li > p, & > ul#buscadas li > p {
-        background: linear-gradient(270deg, #EE3EFE 0%, #2E32FB 100%);
+        background: linear-gradient(90deg,#2E32FB 0%, #EE3EFE 100%);
     }
     &.buscar {
         background: #B4B4B4;

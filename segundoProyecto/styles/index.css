@@ -12,6 +12,11 @@ body, button {
   font-family: 'Chakra Petch', sans-serif;
 }
 
+button {
+  height: 3.6rem;
+  width: 14.4rem;
+}
+
 p {
   font-size: 14px;
   color: white;
@@ -34,19 +39,33 @@ p {
   background: #4180F6;
 }
 
-.claro.barraSuperior, .claro.buscar p.claro, .claro > ul.sugerencias li > p, .claro > ul#tendencias li > p, .claro > ul#buscadas li > p {
-  background: -webkit-gradient(linear, right top, left top, from(#F7C9F3), to(#4180F6));
-  background: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%);
+.claro button.claro.cancelar {
+  background: #FFF4FD;
 }
 
-.claro.buscar {
+.claro button.claro.comenzar, .claro button.claro.subir {
+  background: #F7C9F3;
+}
+
+.claro.barraSuperior, .claro.buscar p.claro, .claro > ul.sugerencias li > p, .claro > ul#tendencias li > p, .claro > ul#buscadas li > p,
+.claro.crear > p.claro, .claro.captura > p.claro {
+  background: -webkit-gradient(linear, left top, right top, from(#4180F6), to(#F7C9F3));
+  background: linear-gradient(90deg, #4180F6 0%, #F7C9F3 100%);
+  font-weight: bold;
+}
+
+.claro.buscar, .claro.crear, .claro.captura {
   background: #E6E6E6;
   -webkit-box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
           box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
 }
 
-.claro.buscar.autofill > button {
+.claro.buscar.autofill > button, .claro.crear.autofill > button, .claro.captura.autofill > button {
   background: #E6E6E6;
+}
+
+.claro.buscar.autofill.ultimas > button, .claro.crear.autofill.ultimas > button, .claro.captura.autofill.ultimas > button {
+  background: #4180F6;
 }
 
 body.oscuro {
@@ -70,8 +89,8 @@ body.oscuro {
 }
 
 .oscuro.barraSuperior, .oscuro.buscar p.claro, .oscuro > ul.sugerencias li > p, .oscuro > ul#tendencias li > p, .oscuro > ul#buscadas li > p {
-  background: -webkit-gradient(linear, right top, left top, from(#EE3EFE), to(#2E32FB));
-  background: linear-gradient(270deg, #EE3EFE 0%, #2E32FB 100%);
+  background: -webkit-gradient(linear, left top, right top, from(#2E32FB), to(#EE3EFE));
+  background: linear-gradient(90deg, #2E32FB 0%, #EE3EFE 100%);
 }
 
 .oscuro.buscar {
@@ -108,6 +127,10 @@ nav {
           justify-content: space-between;
 }
 
+nav .flecha {
+  padding: 10px;
+}
+
 nav ul {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -117,11 +140,6 @@ nav ul {
       -ms-flex-pack: justify;
           justify-content: space-between;
   font-size: 16px;
-}
-
-nav ul button {
-  height: 3.6rem;
-  width: 14.4rem;
 }
 
 nav ul li {
@@ -219,6 +237,21 @@ nav ul li:last-child {
   margin: 1.1rem 2rem;
   padding: 0.6rem 1.5rem;
   text-align: left;
+}
+
+.buscar .autofill.ultimas {
+  display: block;
+  background: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.buscar .autofill.ultimas > button {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: inline-block;
+  margin: 1rem 1rem;
 }
 
 .divisiones {
@@ -354,5 +387,141 @@ nav ul ul {
 
 nav ul ul li {
   width: 90%;
+}
+
+.crear {
+  height: 38.6rem;
+  width: 68.4rem;
+  margin: 7.5rem auto;
+}
+
+.crear p, .crear li {
+  color: black;
+  width: auto;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.crear > p {
+  padding-left: 1.3rem;
+  margin: 0.3rem;
+  color: white;
+}
+
+.crear > img {
+  position: relative;
+  top: 3rem;
+  left: 2.5rem;
+}
+
+.crear > div.textCrear {
+  margin: 0 7rem;
+}
+
+.crear > div.textCrear p {
+  margin: 1rem 0;
+}
+
+.crear > div.textCrear p:first-child {
+  margin-top: 0;
+  font-weight: 700;
+  font-size: 1.6rem;
+}
+
+.crear > div.textCrear ol {
+  list-style-type: none;
+  counter-reset: list;
+}
+
+.crear > div.textCrear ol li {
+  padding: 0.5rem 0;
+}
+
+.crear > div.textCrear ol li:before {
+  font-weight: 700;
+  content: counter(list) ") ";
+  counter-increment: list;
+}
+
+.crear > .botones {
+  margin: 3rem auto 0 auto;
+}
+
+.captura {
+  width: 86rem;
+  height: 54rem;
+  margin: auto;
+}
+
+.captura > p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-left: 1.3rem;
+  margin: 0.3rem;
+  line-height: 2.4rem;
+}
+
+.captura > p > img {
+  margin-left: auto;
+  margin-right: 1rem;
+}
+
+.captura video {
+  display: block;
+  width: 90%;
+  height: 80%;
+  margin: 1.1rem auto;
+}
+
+.captura > .botones {
+  margin: 2rem auto 0 auto;
+}
+
+.botones {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 90%;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.botones .comenzar, .botones .partido {
+  margin-left: 2rem;
+}
+
+.botones .repetir {
+  margin-right: 2rem;
+}
+
+.botones button.partido {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.botones button.partido div {
+  line-height: 250%;
+}
+
+.botones button.partido div:first-child {
+  width: 3.6rem;
+  border-right: 1px solid black;
+}
+
+.botones button.partido div:first-child > img {
+  vertical-align: middle;
+}
+
+.botones button.partido div:last-child {
+  width: 10.8rem;
+  border-left: 1px solid black;
+}
+
+.botones button.partido.grabar {
+  background: #FF6161;
+  color: white;
 }
 /*# sourceMappingURL=index.css.map */

@@ -19,8 +19,8 @@ body.oscuro {
 }
 
 .oscuro.barraSuperior, .oscuro.buscar p.claro, .oscuro > ul.sugerencias li > p, .oscuro > ul#tendencias li > p, .oscuro > ul#buscadas li > p {
-  background: -webkit-gradient(linear, right top, left top, from(#EE3EFE), to(#2E32FB));
-  background: linear-gradient(270deg, #EE3EFE 0%, #2E32FB 100%);
+  background: -webkit-gradient(linear, left top, right top, from(#2E32FB), to(#EE3EFE));
+  background: linear-gradient(90deg, #2E32FB 0%, #EE3EFE 100%);
 }
 
 .oscuro.buscar {

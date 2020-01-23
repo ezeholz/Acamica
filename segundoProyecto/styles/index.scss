@@ -12,6 +12,11 @@ body, button {
     font-family: 'Chakra Petch', sans-serif;
 }
 
+button {
+    height: 3.6rem;
+    width: 14.4rem;
+}
+
 p {
     font-size: 14px;
     color: white;
@@ -39,16 +44,15 @@ nav {
     width: 90%;
     display: flex;
     justify-content: space-between;
+    .flecha {
+        padding: 10px;
+    }
     ul {
         display: inline-flex;
         list-style-type: none;
         justify-content: space-between;
         //width: 25%;
         font-size: 16px;
-        button {
-            height: 3.6rem;
-            width: 14.4rem;
-        }
         li {
             padding: 0 1rem;
         }
@@ -129,7 +133,14 @@ nav {
             //height: 20px;
         }
         &.ultimas {
-            
+            display: block;
+            background: none;
+            box-shadow: none;
+            > button {
+                width: fit-content;
+                display: inline-block;
+                margin: 1rem 1rem;
+            }
         }
     }
 }
@@ -236,4 +247,107 @@ nav ul ul {
     li {
         width: 90%;
     }
+}
+
+.crear {
+    height: 38.6rem;
+    width: 68.4rem;
+    margin: 7.5rem auto;
+    p, li {
+        color: black;
+        width: auto;
+        font-size: 14px;
+        line-height: 20px;
+    }
+    & > p {
+        padding-left: 1.3rem;
+        margin: 0.3rem;
+        color: white;
+    }
+    & > img {
+        position: relative;
+        top: 3rem;
+        left: 2.5rem;
+    }
+    & > div.textCrear {
+        margin: 0 7rem;
+        p {
+            margin: 1rem 0;
+        }
+        p:first-child {
+            margin-top: 0;
+            font-weight: 700;
+            font-size: 1.6rem;
+        }
+        ol {
+            list-style-type: none;
+            counter-reset: list;
+            
+            li{
+                padding: 0.5rem 0;
+            }
+            li:before {
+                font-weight: 700;
+                content: counter(list) ") ";
+                counter-increment: list;
+            }
+        }
+    }
+    & > .botones {
+        margin: 3rem auto 0 auto;
+    }
+}
+
+.captura {
+    width: 86rem;
+    height: 54rem;
+    margin: auto;
+    & > p {
+        display: flex;
+        padding-left: 1.3rem;
+        margin: 0.3rem;
+        line-height: 2.4rem;
+        & > img {margin-left: auto;margin-right: 1rem;}
+    }
+    video {
+        display: block;
+        width: 90%;
+        height: 80%;
+        margin: 1.1rem auto;
+    }
+    & > .botones {
+        margin: 2rem auto 0 auto;
+    }
+}
+
+.botones {
+    display: flex;
+    width: 90%;
+    justify-content: flex-end;
+    .comenzar, .partido {
+        margin-left: 2rem;
+    }
+    .repetir {
+        margin-right: 2rem;
+    }
+    button.partido {
+        display: inline-flex;
+        div {
+            line-height: 250%;
+            &:first-child {
+                width: 3.6rem;
+                border-right: 1px solid black;
+                > img {vertical-align: middle;}
+            }
+            &:last-child {
+                width: 10.8rem;
+                border-left: 1px solid black;
+            }
+        }
+        &.grabar {
+            background: #FF6161;
+            color: white;
+        }
+    }
+    
 }

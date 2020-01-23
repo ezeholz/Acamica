@@ -14,18 +14,32 @@
   background: #4180F6;
 }
 
-.claro.barraSuperior, .claro.buscar p.claro, .claro > ul.sugerencias li > p, .claro > ul#tendencias li > p, .claro > ul#buscadas li > p {
-  background: -webkit-gradient(linear, right top, left top, from(#F7C9F3), to(#4180F6));
-  background: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%);
+.claro button.claro.cancelar {
+  background: #FFF4FD;
 }
 
-.claro.buscar {
+.claro button.claro.comenzar, .claro button.claro.subir {
+  background: #F7C9F3;
+}
+
+.claro.barraSuperior, .claro.buscar p.claro, .claro > ul.sugerencias li > p, .claro > ul#tendencias li > p, .claro > ul#buscadas li > p,
+.claro.crear > p.claro, .claro.captura > p.claro {
+  background: -webkit-gradient(linear, left top, right top, from(#4180F6), to(#F7C9F3));
+  background: linear-gradient(90deg, #4180F6 0%, #F7C9F3 100%);
+  font-weight: bold;
+}
+
+.claro.buscar, .claro.crear, .claro.captura {
   background: #E6E6E6;
   -webkit-box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
           box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
 }
 
-.claro.buscar.autofill > button {
+.claro.buscar.autofill > button, .claro.crear.autofill > button, .claro.captura.autofill > button {
   background: #E6E6E6;
+}
+
+.claro.buscar.autofill.ultimas > button, .claro.crear.autofill.ultimas > button, .claro.captura.autofill.ultimas > button {
+  background: #4180F6;
 }
 /*# sourceMappingURL=claro.css.map */

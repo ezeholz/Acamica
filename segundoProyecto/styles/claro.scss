@@ -10,15 +10,27 @@
         &.verMas {
             background: #4180F6;
         }
+        &.cancelar {
+            background: #FFF4FD;
+        }
+        &.comenzar, &.subir{
+            background: #F7C9F3;
+        }
     }
-    &.barraSuperior, &.buscar p.claro, & > ul.sugerencias li > p, & > ul#tendencias li > p, & > ul#buscadas li > p {
-        background: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%);
+    &.barraSuperior, &.buscar p.claro, & > ul.sugerencias li > p, & > ul#tendencias li > p, & > ul#buscadas li > p, 
+    &.crear > p.claro, &.captura > p.claro {
+        background: linear-gradient(90deg,#4180F6 0%, #F7C9F3 100%);
+        font-weight: bold;
     }
-    &.buscar {
+    &.buscar, &.crear, &.captura {
         background: #E6E6E6;
         box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
         &.autofill > button{
             background: #E6E6E6;
+            
+        }
+        &.autofill.ultimas > button {
+            background: #4180F6;
         }
     }
 }
