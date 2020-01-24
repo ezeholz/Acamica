@@ -92,7 +92,7 @@ async function index(sugerAux) {
             .then(function (response) {return response.json();})
             .then(function (json) {
                 //console.log(json);
-                for(x=0;x<json.data.length;x++){
+                for(let x=0;x<json.data.length;x++){
                     if(ratio(json.data[x].images.downsized.width,json.data[x].images.downsized.height) == 0){
                         //document.getElementById("sugImg" + i).getAttribute("src") = json.data.images.downsized.url;
                         document.getElementById("sugImg" + i).setAttribute("src",json.data[x].images.downsized.url)
