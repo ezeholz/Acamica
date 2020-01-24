@@ -1,10 +1,13 @@
+const apikey = "api_key=HAH9qg4gGd6m3JwsSJUWkAL6mvkcEVBp"
+
 // Temas
 
 window.onclick = function(event) {
-    if (!event.target.matches('.drop')) {
-        if (document.getElementById("menuTemas").classList.contains("mostrar")) {
-            this.abrirMenu("menuTemas");
-        }
+    if(!event.target.matches('.drop')){
+        abrirMenu("menuTemas",false);
+    }
+    if(!event.path.includes(document.querySelector('div.claro.buscar'))){
+        abrirMenu('autofill',false);
     }
 }
 
@@ -20,13 +23,18 @@ function abrirMenu(id,force) {
     document.getElementById(id).classList.toggle("mostrar",force);
 }
 
+
+    
+
+
 function cambiarTema() {
     let lista = document.getElementsByClassName("claro");
     for(let i=0 ; i<lista.length ; i++) {
         lista[i].classList.toggle("oscuro");
     }
-    document.getElementById("menuTemas").getElementsByTagName("button")[0].toggleAttribute("disabled");
-    document.getElementById("menuTemas").getElementsByTagName("button")[1].toggleAttribute("disabled");
+    let botones = document.getElementById("menuTemas").getElementsByTagName("button");
+    botones[0].toggleAttribute("disabled");
+    botones[1].toggleAttribute("disabled");
     if(lista[0].classList.value.includes('oscuro')){localStorage.setItem('tema','oscuro')}
     else{localStorage.setItem('tema','claro')}
 }
@@ -39,8 +47,6 @@ function ratio(w,h) {
 // borrar ultimos li para que quede parejo al final
 
 // Sugerencias
-
-
 
 function fetchSug() {
     if(localStorage.getItem('lastSearchs') == null) {localStorage.setItem('lastSearchs',
@@ -57,7 +63,7 @@ if(sugerencias.length < 4) {localStorage.setItem('lastSearchs',
     sugerencias+"gato;perro;animales;programming;white guy blinking;"/*"john travolta";*/+"garfield;rick and morty;los simpsons;internet;html;css;beproud;lgbtq+;"
 );sugerencias=fetchSug()}
 
-async function sugeridos() {
+function sugeridos() {
     let sugerAux = sugerencias
     sugerAux.splice(sugerAux.length-1,1)
     for(let i=sugerAux.length;i!=4;i=sugerAux.length) {
@@ -74,34 +80,35 @@ fetch("https://worried-passive.glitch.me/counter")
         document.getElementsByClassName("barraSuperior")[0].childNodes[1].innerText = texto
     })
 
-async function index(sugerAux) {
+function index(sugerAux) {
 
     for(let i=1;i<=4;i++) {
         //console.log(i);
         document.getElementById("sug" + i).innerHTML = sugerAux[i - 1] + '<img src="./images/button%20close.svg" alt="button close">';
         document.getElementById("sug" + i).addEventListener("click", function (event) {if(event.target.alt == "button close"){
             let a1 = localStorage.getItem('lastSearchs')
-            let a2 = a1.split(document.getElementById(this.id).innerText+';')[0]+a1.split(document.getElementById(this.id).innerText+';')[1]
+            let a2 = a1.split(document.getElementById(this.id).innerText+';')
+            let a3 = a2[0]+a2[1]
             //console.log(a1)
             //console.log(a2)
-            localStorage.setItem('lastSearchs',a2)
+            localStorage.setItem('lastSearchs',a3)
             //console.log(localStorage.getItem('lastSearchs'))
             location.reload()
         }})
-        await fetch("https://api.giphy.com/v1/gifs/search?api_key=HAH9qg4gGd6m3JwsSJUWkAL6mvkcEVBp&limit=25&q="+sugerAux[i - 1])
-            .then(function (response) {return response.json();})
-            .then(function (json) {
-                //console.log(json);
-                for(let x=0;x<json.data.length;x++){
-                    if(ratio(json.data[x].images.downsized.width,json.data[x].images.downsized.height) == 0){
-                        //document.getElementById("sugImg" + i).getAttribute("src") = json.data.images.downsized.url;
-                        document.getElementById("sugImg" + i).setAttribute("src",json.data[x].images.downsized.url)
-                        document.getElementById("sugBtn" + i).setAttribute("onclick","location.href='"+json.data[x].url+"'")
-                        //console.log(document.getElementById("sugImg" + i));
-                        break;
-                    }
+        fetch("https://api.giphy.com/v1/gifs/search?"+apikey+"&limit=25&q="+sugerAux[i - 1])
+        .then(function (response) {return response.json();})
+        .then(function (json) {
+            //console.log(json);
+            for(let x=0;x<json.data.length;x++){
+                if(ratio(json.data[x].images.downsized.width,json.data[x].images.downsized.height) == 0){
+                    //document.getElementById("sugImg" + i).getAttribute("src") = json.data.images.downsized.url;
+                    document.getElementById("sugImg" + i).setAttribute("src",json.data[x].images.downsized.url)
+                    document.getElementById("sugBtn" + i).setAttribute("onclick","location.href='"+json.data[x].url+"'")
+                    //console.log(document.getElementById("sugImg" + i));
+                    break;
                 }
-            })
+            }
+        })
         if (i==4) {trend()}
     }
     
@@ -112,9 +119,10 @@ async function index(sugerAux) {
 async function trend() {
 
     const total = Math.round(((window.screen.height*1.2)/330)*4);
+    let tendencias = document.getElementById("tendencias");
 
-    for(x=0,c=0;c<total;x++) {
-        await fetch("https://api.giphy.com/v1/gifs/trending?api_key=HAH9qg4gGd6m3JwsSJUWkAL6mvkcEVBp&offset=" + x * 26).then(function (response) {return response.json();})
+    for(let x=0,c=0;c<total;x++) {
+        await fetch("https://api.giphy.com/v1/gifs/trending?"+apikey+"&offset=" + x * 26).then(function (response) {return response.json();})
         .then(function (json) {
             const grandes = 4; // Con respecto a las chicas
             let chicas = 0;
@@ -129,14 +137,18 @@ async function trend() {
                 //node.innerHTML = '<img src="'+ json.data[i].images.downsized.url +'" alt="gif"><p>#'+ ratio +'</p>';
                 let imgRatio = ratio(json.data[i].images.downsized.width,json.data[i].images.downsized.height);
                 if(imgRatio == 0) {
-                    document.getElementById("tendencias").appendChild(node);
+                    tendencias.appendChild(node);
                     chicas++;
                     c++;
                 } else if (imgRatio == 1 && chicas >= grandes) {
-                    document.getElementById("tendencias").appendChild(node);
+                    tendencias.appendChild(node);
                     chicas=0;
                     c++;
                 } else {continue;}
+
+                // Mejorar código, que tome todos los gifs, y los alargados los haga cuadrados
+                // Si le saco el async, la página explota
+
                 //node.setAttribute("class","chica")
                 //document.getElementById("tendencias").appendChild(node);
                 //console.log(Math.min(320 / json.data[i].images.downsized.width, 200 / json.data[i].images.downsized.height));
@@ -178,6 +190,7 @@ if(!document.location.pathname.includes('misGifos.html')){
     })
 }
 function search(texto) {
+    const busqueda = document.getElementsByClassName('busqueda');
     if(texto.length >= 1) {
         //if(localStorage.getItem('lastSearchs') == null) {localStorage.setItem('lastSearchs','')}
         // temp = localStorage.getItem('lastSearch')
@@ -186,31 +199,32 @@ function search(texto) {
             localStorage.setItem('lastSearchs', texto + ';' + localStorage.getItem('lastSearchs'))
         }
 
-        fetch("https://api.giphy.com/v1/gifs/search?api_key=HAH9qg4gGd6m3JwsSJUWkAL6mvkcEVBp&limit=50&q="+ texto)
+        fetch("https://api.giphy.com/v1/gifs/search?"+apikey+"&limit=50&q="+ texto)
             .then(function (response) {return response.json();})
             .then(function (json) {
                 for(let i=0;i<json.data.length;i++) {
-                    var node = document.createElement("li");
+                    let node = document.createElement("li");
                     node.innerHTML = '<img src="'+ json.data[i].images.downsized.url +'" alt="gif"><p>#'+ json.data[i].title.split("GIF")[0] +'</p>';
                     node.setAttribute("onclick","location.href='"+json.data[i].url+"'");
-                    document.getElementById("buscadas").insertBefore(node,document.getElementById("buscadas").firstElementChild);
+                    let a1 = document.getElementById("buscadas");
+                    a1.insertBefore(node,a1.firstElementChild);
                 }
-                return document.getElementsByClassName('busqueda')[2].hasAttribute('hidden');
+                return busqueda[2].hasAttribute('hidden');
             })
             .then(function (buscar){
                 if(buscar) {
-                    document.getElementsByClassName('busqueda')[0].setAttribute('hidden',true);
-                    document.getElementsByClassName('busqueda')[1].setAttribute('hidden',true);
+                    busqueda[0].setAttribute('hidden',true);
+                    busqueda[1].setAttribute('hidden',true);
                     abrirMenu('autofill',false);
-                    document.getElementsByClassName('busqueda')[2].removeAttribute('hidden');
+                    busqueda[2].removeAttribute('hidden');
                     document.getElementById('autofill').classList.add('ultimas');
                 }
             })
     } else {
-        if(!document.getElementsByClassName('busqueda')[2].hasAttribute('hidden')) {
-            document.getElementsByClassName('busqueda')[0].removeAttribute('hidden');
-            document.getElementsByClassName('busqueda')[1].removeAttribute('hidden');
-            document.getElementsByClassName('busqueda')[2].setAttribute('hidden',true);
+        if(!busqueda[2].hasAttribute('hidden')) {
+            busqueda[0].removeAttribute('hidden');
+            busqueda[1].removeAttribute('hidden');
+            busqueda[2].setAttribute('hidden',true);
             document.getElementById('autofill').classList.remove('ultimas');
         }
     }

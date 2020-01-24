@@ -10,14 +10,18 @@ body.oscuro {
         border: 1px solid white;
         background: #997D97;
         box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
-        &.verMas {
-            background: #4180F6;
+        &.cancelar {
+            background: #FFF4FD;
+        }
+        &.comenzar, &.subir{
+            background: #F7C9F3;
         }
     }
-    &.barraSuperior, &.buscar p.claro, & > ul.sugerencias li > p, & > ul#tendencias li > p, & > ul#buscadas li > p {
+    &.barraSuperior, &.buscar p.claro, & > ul.sugerencias li > p, & > ul#tendencias li > p, & > ul#buscadas li > p, 
+    &.crear > p.claro, &.captura > p.claro {
         background: linear-gradient(90deg,#2E32FB 0%, #EE3EFE 100%);
     }
-    &.buscar {
+    &.buscar, &.crear, &.captura{
         background: #B4B4B4;
         box-shadow: inset -2px -2px 0 0 #8F8F8F, inset 2px 2px 0 0 #FFFFFF;
         &.autofill > button{

@@ -84,22 +84,27 @@ body.oscuro {
           box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
 }
 
-.oscuro button.claro.verMas {
-  background: #4180F6;
+.oscuro button.claro.cancelar {
+  background: #FFF4FD;
 }
 
-.oscuro.barraSuperior, .oscuro.buscar p.claro, .oscuro > ul.sugerencias li > p, .oscuro > ul#tendencias li > p, .oscuro > ul#buscadas li > p {
+.oscuro button.claro.comenzar, .oscuro button.claro.subir {
+  background: #F7C9F3;
+}
+
+.oscuro.barraSuperior, .oscuro.buscar p.claro, .oscuro > ul.sugerencias li > p, .oscuro > ul#tendencias li > p, .oscuro > ul#buscadas li > p,
+.oscuro.crear > p.claro, .oscuro.captura > p.claro {
   background: -webkit-gradient(linear, left top, right top, from(#2E32FB), to(#EE3EFE));
   background: linear-gradient(90deg, #2E32FB 0%, #EE3EFE 100%);
 }
 
-.oscuro.buscar {
+.oscuro.buscar, .oscuro.crear, .oscuro.captura {
   background: #B4B4B4;
   -webkit-box-shadow: inset -2px -2px 0 0 #8F8F8F, inset 2px 2px 0 0 #FFFFFF;
           box-shadow: inset -2px -2px 0 0 #8F8F8F, inset 2px 2px 0 0 #FFFFFF;
 }
 
-.oscuro.buscar.autofill > button {
+.oscuro.buscar.autofill > button, .oscuro.crear.autofill > button, .oscuro.captura.autofill > button {
   background: #B4B4B4;
 }
 
