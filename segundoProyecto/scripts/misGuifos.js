@@ -36,12 +36,13 @@ function obtenerGuifos() {
 const video = document.querySelector('video');
 
 async function empezarGuifo() {
-    var stream = await navigator.mediaDevices.getUserMedia({video: true});
+    let stream = await navigator.mediaDevices.getUserMedia({video: true});
     video.srcObject = stream;
+    console.log(video.src);
     document.getElementsByClassName('crear')[0].setAttribute('hidden',true);
     document.getElementsByClassName('misGuifos')[0].setAttribute('hidden',true);
     document.getElementsByClassName('captura')[0].removeAttribute('hidden');
-    var recorder = new RecordRTCPromisesHandler(stream, {
+    var recorder = new RecordRTCPromisesHandler(video.srcObject, {
         type: 'video'
     });
     document.getElementsByClassName('subir')[0].setAttribute('onclick','grabar()')
