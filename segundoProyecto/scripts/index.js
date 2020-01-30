@@ -2,15 +2,6 @@ const apikey = "api_key=HAH9qg4gGd6m3JwsSJUWkAL6mvkcEVBp"
 
 // Temas
 
-window.onclick = function(event) {
-    if(!event.target.matches('.drop')){
-        abrirMenu("menuTemas",false);
-    }
-    if(!event.path.includes(document.querySelector('div.claro.buscar'))){
-        abrirMenu('autofill',false);
-    }
-}
-
 window.onkeypress = function(event) {
     if(event.keyCode == 13 && event.target.matches('#barBuscar')) {
         this.search(document.getElementById("barBuscar").value)
@@ -22,10 +13,6 @@ if(localStorage.getItem('tema')=="oscuro"){cambiarTema()}
 function abrirMenu(id,force) {
     document.getElementById(id).classList.toggle("mostrar",force);
 }
-
-
-    
-
 
 function cambiarTema() {
     let lista = document.getElementsByClassName("claro");
@@ -160,6 +147,16 @@ async function trend() {
 // Search
 
 if(!document.location.pathname.includes('misGifos.html')){
+
+    window.onclick = function(event) {
+        if(!event.target.matches('.drop')){
+            abrirMenu("menuTemas",false);
+        }
+        if(!event.path.includes(document.querySelector('div.claro.buscar'))){
+            abrirMenu('autofill',false);
+        }
+    }
+
     document.getElementById("barBuscar").addEventListener("input", function() {
         let termino = document.getElementById("barBuscar").value;
         //console.log(termino)

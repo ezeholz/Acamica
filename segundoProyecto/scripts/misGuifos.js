@@ -35,14 +35,16 @@ function obtenerGuifos() {
 
 const video = document.querySelector('video');
 
+var recorder, stream;
+
 async function empezarGuifo() {
-    let stream = await navigator.mediaDevices.getUserMedia({video: true});
+    stream = await navigator.mediaDevices.getUserMedia({video: true});
     video.srcObject = stream;
-    console.log(video.src);
+    console.log(video.srcObject);
     document.getElementsByClassName('crear')[0].setAttribute('hidden',true);
     document.getElementsByClassName('misGuifos')[0].setAttribute('hidden',true);
     document.getElementsByClassName('captura')[0].removeAttribute('hidden');
-    var recorder = new RecordRTCPromisesHandler(video.srcObject, {
+    recorder = new RecordRTCPromisesHandler(stream, {
         type: 'video'
     });
     document.getElementsByClassName('subir')[0].setAttribute('onclick','grabar()')
@@ -80,15 +82,24 @@ async function stopRecordingCallback() {
 }
 
 async function subir() {
-    await fetch('https://upload.giphy.com/v1/gifs?'+apikey+'&source_post_url='+video.src)
+    let init = {
+        method: "POST",
+        body: {
+            file: video.src
+        },
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    }
+    await fetch('https://upload.giphy.com/v1/gifs?'+apikey,init)
     .then(function (response) {return response.json()})
     .then(function (json) {
         console.log(json)
-        if(json.data.status == 200) {
+        if(json.meta.status == 200) {
             localStorage.setItem('misGuifos',json.data.response_id + ',' + misGuifos)
             misGuifos = fetchGifs()
         }
-        document.getElementById('descargar').setAttribute('onclick','invokeSaveAsDialog(blob,TuGuifo.gif)');
+        document.getElementById('descargar').setAttribute('onclick','invokeSaveAsDialog(stream,TuGuifo.gif)');
         document.getElementById('copiar').setAttribute('onclick','copiar()');
     })
     subido()
