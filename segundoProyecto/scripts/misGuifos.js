@@ -84,7 +84,8 @@ async function stopRecordingCallback() {
 async function subir() {
 	let blob = await fetch(video.src).then(r => r.blob());
 	let formData = new FormData();
-	formData.append("file", blob, "gif.gif");
+    formData.append("file", blob, "gif.gif");
+    formData.append("source_post_url", "https://ezeholz.github.io");
 	const uploadURL = `https://upload.giphy.com/v1/gifs?${apikey}`;
 	await fetch(uploadURL, {
 		method: "POST",
