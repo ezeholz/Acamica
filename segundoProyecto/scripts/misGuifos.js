@@ -17,7 +17,7 @@ function fetchGifs() {
 var misGuifos = fetchGifs()
 
 function obtenerGuifos() {
-    var misGuifos = fetchGifs()
+    misGuifos = fetchGifs()
     fetch("https://api.giphy.com/v1/gifs?"+ apikey +"&ids="+misGuifos).then(function (response) {return response.json();})
     .then(function (json) {
         for(let i=0;i<json.data.length;i++){
@@ -37,15 +37,20 @@ const video = document.querySelector('video');
 
 var recorder, stream;
 
+function repetir() {
+    document.getElementsByClassName('botones')[0].innerHTML = '<button class="claro cancelar repetir" hidden onclick="repetir()">Repetir Captura</button><button class="claro partido subir"><div><img src="./images/camera.svg" alt="camara"></div><div>Capturar</div></button>'
+    empezarGuifo()
+}
+
 async function empezarGuifo() {
     stream = await navigator.mediaDevices.getUserMedia({video: true});
     video.srcObject = stream;
-    console.log(video.srcObject);
+    //console.log(video.srcObject);
     document.getElementsByClassName('crear')[0].setAttribute('hidden',true);
     document.getElementsByClassName('misGuifos')[0].setAttribute('hidden',true);
     document.getElementsByClassName('captura')[0].removeAttribute('hidden');
     recorder = new RecordRTCPromisesHandler(stream, {
-        type: 'gif'
+        type: 'video'
     });
     document.getElementsByClassName('subir')[0].setAttribute('onclick','grabar()')
     
@@ -62,7 +67,7 @@ async function grabar() {
 async function parar() {
     await recorder.stopRecording();
     stopRecordingCallback();
-    console.log(video.src);
+    //console.log(video.src);
     document.getElementsByClassName('repetir')[0].removeAttribute('hidden');
     document.getElementsByClassName('subir')[0].innerHTML = 'Subir Guifo'
     document.getElementsByClassName('subir')[0].classList.remove('grabar','partido')
@@ -73,7 +78,7 @@ async function stopRecordingCallback() {
     video.srcObject = null;
     let blob = await recorder.getBlob();
     video.src = URL.createObjectURL(blob);
-    recorder.stream.getTracks(t => t.stop());
+    recorder.stream.getTracks()[0].stop();
 
     await recorder.reset();
     await recorder.destroy();
@@ -84,17 +89,18 @@ async function stopRecordingCallback() {
 async function subir() {
     let blob = await fetch(video.src).then(function (r) {return r.blob()})
     let formData = new FormData();
-    formData.append("file",blob,"gif.gif")
+    stream = blob.slice(0, blob.size, "image/gif")
+    formData.append("file",stream,"gif.gif")
     let init = {
         method: "POST",
         body: formData,
     }
-    await fetch('https://upload.giphy.com/v1/gifs?'+apikey,init)
+    fetch('https://upload.giphy.com/v1/gifs?'+apikey,init)
     .then(function (response) {return response.json()})
     .then(function (json) {
         console.log(json)
         if(json.meta.status == 200) {
-            localStorage.setItem('misGuifos',json.meta.response_id + ',' + misGuifos)
+            localStorage.setItem('misGuifos',json.data.id + ',' + misGuifos)
             misGuifos = fetchGifs()
         }
         document.getElementById('descargar').setAttribute('onclick','invokeSaveAsDialog(stream,TuGuifo.gif)');
@@ -105,7 +111,13 @@ async function subir() {
 }
 
 function subido() {
-    console.log('OK')
+    copiar()
+    document.getElementsByClassName('repetir')[0].setAttribute('hidden',true);
+    document.getElementsByClassName('subir')[0].innerHTML = 'Listo'
+    document.getElementsByClassName('crear')[0].children[1].setAttribute('hidden',true);
+    document.getElementsByClassName('crear')[0].children[2].setAttribute('hidden',true);
+    document.getElementById('subido').removeAttribute('hidden')
+    obtenerGuifos()
 }
 
 async function copiar() {
