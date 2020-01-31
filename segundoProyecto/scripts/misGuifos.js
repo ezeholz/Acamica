@@ -82,7 +82,7 @@ async function stopRecordingCallback() {
 }
 
 async function subir() {
-    let blob = await fetch(video.src).then(function (r) {r.blob()})
+    let blob = await fetch(video.src).then(function (r) {return r.blob()})
     let formData = new FormData();
     formData.append("file",blob,"gif.gif")
     let init = {
