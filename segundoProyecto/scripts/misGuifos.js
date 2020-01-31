@@ -82,8 +82,9 @@ async function stopRecordingCallback() {
 }
 
 async function subir() {
+    let blob = await fetch(video.src).then(function (r) {r.blob()})
     let formData = new FormData();
-    formData.append("source_image_url",video.src,"gif.gif")
+    formData.append("file",blob,"gif.gif")
     let init = {
         method: "POST",
         body: formData,
@@ -93,7 +94,7 @@ async function subir() {
     .then(function (json) {
         console.log(json)
         if(json.meta.status == 200) {
-            localStorage.setItem('misGuifos',json.data.response_id + ',' + misGuifos)
+            localStorage.setItem('misGuifos',json.meta.response_id + ',' + misGuifos)
             misGuifos = fetchGifs()
         }
         document.getElementById('descargar').setAttribute('onclick','invokeSaveAsDialog(stream,TuGuifo.gif)');
@@ -104,7 +105,7 @@ async function subir() {
 }
 
 function subido() {
-
+    console.log('OK')
 }
 
 async function copiar() {
