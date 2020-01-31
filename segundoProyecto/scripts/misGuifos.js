@@ -83,7 +83,7 @@ async function stopRecordingCallback() {
 
 async function subir() {
     let formData = new FormData();
-    formData.append("file",recorder.getBlob(),"gif.gif")
+    formData.append("file",video.src,"gif.gif")
     let init = {
         method: "POST",
         body: formData,
@@ -98,8 +98,9 @@ async function subir() {
         }
         document.getElementById('descargar').setAttribute('onclick','invokeSaveAsDialog(stream,TuGuifo.gif)');
         document.getElementById('copiar').setAttribute('onclick','copiar()');
+        subido()
     })
-    subido()
+    
 }
 
 function subido() {
