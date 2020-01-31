@@ -45,7 +45,7 @@ async function empezarGuifo() {
     document.getElementsByClassName('misGuifos')[0].setAttribute('hidden',true);
     document.getElementsByClassName('captura')[0].removeAttribute('hidden');
     recorder = new RecordRTCPromisesHandler(stream, {
-        type: 'gif'
+        type: 'video'
     });
     document.getElementsByClassName('subir')[0].setAttribute('onclick','grabar()')
     
