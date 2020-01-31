@@ -72,7 +72,8 @@ async function parar() {
 async function stopRecordingCallback() {
     video.srcObject = null;
     let blob = await recorder.getBlob();
-    video.src = URL.createObjectURL(blob);
+    //video.src = URL.createObjectURL(blob);
+    video.srcObject = blob;
     recorder.stream.getTracks(t => t.stop());
 
     await recorder.reset();
@@ -83,7 +84,7 @@ async function stopRecordingCallback() {
 
 async function subir() {
     let formData = new FormData();
-    formData.append("file",video.src,"gif.gif")
+    formData.append("file",video.srcObject,"gif.gif")
     let init = {
         method: "POST",
         body: formData,
