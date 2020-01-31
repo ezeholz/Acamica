@@ -45,7 +45,7 @@ async function empezarGuifo() {
     document.getElementsByClassName('misGuifos')[0].setAttribute('hidden',true);
     document.getElementsByClassName('captura')[0].removeAttribute('hidden');
     recorder = new RecordRTCPromisesHandler(stream, {
-        type: 'video'
+        type: 'gif'
     });
     document.getElementsByClassName('subir')[0].setAttribute('onclick','grabar()')
     
@@ -82,24 +82,26 @@ async function stopRecordingCallback() {
 }
 
 async function subir() {
-	let blob = await fetch(video.src).then(r => r.blob());
-	let formData = new FormData();
-    formData.append("file", blob, "gif.gif");
-    formData.append("source_post_url", "https://ezeholz.github.io");
-	const uploadURL = `https://upload.giphy.com/v1/gifs?${apikey}`;
-	await fetch(uploadURL, {
-		method: "POST",
-		body: formData
-	});
-	const json = response => response.json();
-	console.log(json);
-	if (json.meta.status == 200) {
-		localStorage.setItem("misGuifos", json.meta.response_id + "," + misGuifos);
-		misGuifos = fetchGifs();
-	}
-	document.getElementById("descargar").setAttribute("onclick", "invokeSaveAsDialog(stream,TuGuifo.gif)");
-	document.getElementById("copiar").setAttribute("onclick", "copiar()");
-	subido();
+    let blob = await fetch(video.src).then(function (r) {r.blob()})
+    let formData = new FormData();
+    formData.append("file",blob,"gif.gif")
+    let init = {
+        method: "POST",
+        body: formData,
+    }
+    await fetch('https://upload.giphy.com/v1/gifs?'+apikey,init)
+    .then(function (response) {return response.json()})
+    .then(function (json) {
+        console.log(json)
+        if(json.meta.status == 200) {
+            localStorage.setItem('misGuifos',json.meta.response_id + ',' + misGuifos)
+            misGuifos = fetchGifs()
+        }
+        document.getElementById('descargar').setAttribute('onclick','invokeSaveAsDialog(stream,TuGuifo.gif)');
+        document.getElementById('copiar').setAttribute('onclick','copiar()');
+        subido()
+    })
+    
 }
 
 function subido() {
