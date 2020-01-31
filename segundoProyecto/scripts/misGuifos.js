@@ -35,7 +35,7 @@ function obtenerGuifos() {
 
 const video = document.querySelector('video');
 
-var recorder, stream, blob;
+var recorder, stream;
 
 async function empezarGuifo() {
     stream = await navigator.mediaDevices.getUserMedia({video: true});
@@ -71,7 +71,7 @@ async function parar() {
 
 async function stopRecordingCallback() {
     video.srcObject = null;
-    blob = await recorder.getBlob();
+    let blob = await recorder.getBlob();
     video.src = URL.createObjectURL(blob);
     recorder.stream.getTracks(t => t.stop());
 
@@ -82,18 +82,13 @@ async function stopRecordingCallback() {
 }
 
 async function subir() {
+    let formData = new FormData();
+    formData.append("file",recorder.getBlob(),"gif.gif")
     let init = {
         method: "POST",
-        body: {
-            'source_post_url': video.src,
-            'api_key': apikey.split('=')[1],
-        },
-        headers:{
-            'Content-Type': 'application/json',
-        }
+        body: formData,
     }
-    await fetch('https://upload.giphy.com/v1/gifs',init)
-    //await fetch('https://upload.giphy.com/v1/gifs?'+apikey+'&source_post_url='+video.src)
+    await fetch('https://upload.giphy.com/v1/gifs?'+apikey,init)
     .then(function (response) {return response.json()})
     .then(function (json) {
         console.log(json)
