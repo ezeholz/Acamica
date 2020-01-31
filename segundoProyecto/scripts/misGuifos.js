@@ -83,7 +83,7 @@ async function stopRecordingCallback() {
 
 async function subir() {
     let formData = new FormData();
-    formData.append("file",video.src,"gif.gif")
+    formData.append("source_image_url",video.src,"gif.gif")
     let init = {
         method: "POST",
         body: formData,
