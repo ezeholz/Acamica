@@ -77,7 +77,7 @@ async function parar() {
 async function stopRecordingCallback() {
     video.srcObject = null;
     stream = await recorder.getBlob();
-    let blob = stream.slice(0, blob.size, "video/webm")
+    let blob = stream.slice(0, stream.size, "video/webm")
     video.src = URL.createObjectURL(blob);
     recorder.stream.getTracks()[0].stop();
 
