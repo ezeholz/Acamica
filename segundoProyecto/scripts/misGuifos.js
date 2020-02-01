@@ -50,7 +50,7 @@ async function empezarGuifo() {
     document.getElementsByClassName('misGuifos')[0].setAttribute('hidden',true);
     document.getElementsByClassName('captura')[0].removeAttribute('hidden');
     recorder = new RecordRTCPromisesHandler(stream, {
-        type: 'video'
+        type: 'gif'
     });
     document.getElementsByClassName('subir')[0].setAttribute('onclick','grabar()')
     
@@ -76,7 +76,8 @@ async function parar() {
 
 async function stopRecordingCallback() {
     video.srcObject = null;
-    let blob = await recorder.getBlob();
+    stream = await recorder.getBlob();
+    let blob = stream.slice(0, blob.size, "video/webm")
     video.src = URL.createObjectURL(blob);
     recorder.stream.getTracks()[0].stop();
 
@@ -87,9 +88,7 @@ async function stopRecordingCallback() {
 }
 
 async function subir() {
-    let blob = await fetch(video.src).then(function (r) {return r.blob()})
     let formData = new FormData();
-    stream = blob.slice(0, blob.size, "image/gif")
     formData.append("file",stream,"gif.gif")
     let init = {
         method: "POST",
