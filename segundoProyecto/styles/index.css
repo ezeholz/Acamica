@@ -419,30 +419,30 @@ nav ul ul li {
   left: 2.5rem;
 }
 
-.crear > div.textCrear {
+.crear > div.textCrear, .crear > #subido > div {
   margin: 0 7rem;
 }
 
-.crear > div.textCrear p {
+.crear > div.textCrear p, .crear > #subido > div p {
   margin: 1rem 0;
 }
 
-.crear > div.textCrear p:first-child {
+.crear > div.textCrear p:first-child, .crear > #subido > div p:first-child {
   margin-top: 0;
   font-weight: 700;
   font-size: 1.6rem;
 }
 
-.crear > div.textCrear ol {
+.crear > div.textCrear ol, .crear > #subido > div ol {
   list-style-type: none;
   counter-reset: list;
 }
 
-.crear > div.textCrear ol li {
+.crear > div.textCrear ol li, .crear > #subido > div ol li {
   padding: 0.5rem 0;
 }
 
-.crear > div.textCrear ol li:before {
+.crear > div.textCrear ol li:before, .crear > #subido > div ol li:before {
   font-weight: 700;
   content: counter(list) ") ";
   counter-increment: list;
@@ -528,5 +528,40 @@ nav ul ul li {
 .botones button.partido.grabar {
   background: #FF6161;
   color: white;
+}
+
+#subido {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+#subido > img {
+  margin: 2rem 4px;
+}
+
+#subido > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  margin: auto auto;
+}
+
+#subido > div > button {
+  width: 100%;
+  border: 1px solid #808080;
+  -webkit-box-shadow: inset -1px -1px 0 0 #B4B4B4, inset 1px 1px 0 0 #FFFFFF;
+          box-shadow: inset -1px -1px 0 0 #B4B4B4, inset 1px 1px 0 0 #FFFFFF;
+}
+
+#subido.hidden {
+  display: none;
 }
 /*# sourceMappingURL=index.css.map */

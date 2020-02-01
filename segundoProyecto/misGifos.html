@@ -45,7 +45,9 @@
             </ol>
             <p>¿Quieres comenzar a crear tu guifo ahora?</p>
         </div>
-        <div id="subido" hidden>
+        <div id="subiendo" class="hidden">
+        </div>
+        <div id="subido" class="hidden">
             <img src="" alt="gif">
             <div>
                 <p>Guifo creado con éxito</p>
@@ -62,7 +64,7 @@
         <p class="claro">Un chequeo antes de empezar<img src="./images/button%20close.svg" alt="button close"></p>
         <video src="" autoplay loop></video>
         <div class="botones">
-            <button class="claro cancelar repetir" hidden onclick="empezarGuifo()">Repetir Captura</button>
+            <button class="claro cancelar repetir" hidden onclick="repetir()">Repetir Captura</button>
             <button class="claro partido subir"><div><img src="./images/camera.svg" alt="camara"></div><div>Capturar</div></button>
         </div>
     </div>
@@ -75,5 +77,6 @@
     <script src="./scripts/RecordRTC.js"></script>
     <script src="./scripts/index.js"></script>
     <script src="./scripts/misGuifos.js"></script>
+    <script>obtenerGuifos()</script>
 </body>
 </html>

@@ -269,7 +269,7 @@ nav ul ul {
         top: 3rem;
         left: 2.5rem;
     }
-    & > div.textCrear {
+    & > div.textCrear, & > #subido > div {
         margin: 0 7rem;
         p {
             margin: 1rem 0;
@@ -348,5 +348,29 @@ nav ul ul {
             background: #FF6161;
             color: white;
         }
+    }
+}
+
+#subido {
+    display: flex;
+    justify-content: space-evenly;
+    & > img {
+        margin: 2rem 4px;
+    }
+    & > div {
+        display: flex;
+        flex-flow: column nowrap;
+        margin: auto auto;
+        & > button {
+            width: 100%;
+            border: 1px solid #808080;
+            box-shadow: inset -1px -1px 0 0 #B4B4B4, inset 1px 1px 0 0 #FFFFFF;
+            //font-size: 16px;
+            //color: #B4B4B4;
+            //line-height: 18px;
+        }
+    }
+    &.hidden {
+        display: none;
     }
 }

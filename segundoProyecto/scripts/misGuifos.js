@@ -4,11 +4,16 @@ function modo() {
     else {return false}
 }
 
+if (!modo()) {
+    document.getElementsByClassName('crear')[0].setAttribute('hidden',true);
+}
+
 function fetchGifs() {
+    let misGuifos
     switch(localStorage.getItem('misGuifos')){
         case null: localStorage.setItem('misGuifos',"");return "";break;
         case "": return ""; break;
-        default: var misGuifos = localStorage.getItem('misGuifos').split(';');break;
+        default: misGuifos = localStorage.getItem('misGuifos').split(',');break;
     }
     misGuifos.splice(sugerencias.length-1,1)
     return misGuifos
@@ -18,6 +23,7 @@ var misGuifos = fetchGifs()
 
 function obtenerGuifos() {
     misGuifos = fetchGifs()
+    if(misGuifos === ""){return}
     fetch("https://api.giphy.com/v1/gifs?"+ apikey +"&ids="+misGuifos).then(function (response) {return response.json();})
     .then(function (json) {
         for(let i=0;i<json.data.length;i++){
@@ -28,7 +34,7 @@ function obtenerGuifos() {
             if (json.data[i].title.split("GIF")[0] == "") {
                 node.innerHTML = '<img src="'+ json.data[i].images.downsized.url +'" alt="gif"><p>#no-title '+ json.data[i].title +'</p>';
             }
-            document.getElementById("tendencias").insertBefore(node,document.getElementById("buscadas").firstElementChild);
+            document.getElementById("misGifos").insertBefore(node,document.getElementById("misGifos").firstElementChild);
         }
     })
 }
@@ -38,7 +44,7 @@ const video = document.querySelector('video');
 var recorder, stream;
 
 function repetir() {
-    document.getElementsByClassName('botones')[0].innerHTML = '<button class="claro cancelar repetir" hidden onclick="repetir()">Repetir Captura</button><button class="claro partido subir"><div><img src="./images/camera.svg" alt="camara"></div><div>Capturar</div></button>'
+    document.getElementsByClassName('botones')[1].innerHTML = '<button class="claro cancelar repetir" hidden onclick="repetir()">Repetir Captura</button><button class="claro partido subir"><div><img src="./images/camera.svg" alt="camara"></div><div>Capturar</div></button>'
     empezarGuifo()
 }
 
@@ -49,9 +55,9 @@ async function empezarGuifo() {
     document.getElementsByClassName('crear')[0].setAttribute('hidden',true);
     document.getElementsByClassName('misGuifos')[0].setAttribute('hidden',true);
     document.getElementsByClassName('captura')[0].removeAttribute('hidden');
-    recorder = new RecordRTCPromisesHandler(stream, {
-        type: 'gif'
-    });
+    recorder = new MRecordRTC()
+    recorder.addStream(stream)
+    recorder.mediaType = {audio: false,video: MediaStreamRecorder,gif:true}
     document.getElementsByClassName('subir')[0].setAttribute('onclick','grabar()')
     
 }
@@ -64,9 +70,10 @@ async function grabar() {
     document.getElementsByClassName('subir')[0].setAttribute('onclick','parar()')
 }
 
-async function parar() {
-    await recorder.stopRecording();
-    stopRecordingCallback();
+function parar() {
+    recorder.stopRecording();
+    setTimeout(function (){stopRecordingCallback()},100)
+    //stopRecordingCallback()
     //console.log(video.src);
     document.getElementsByClassName('repetir')[0].removeAttribute('hidden');
     document.getElementsByClassName('subir')[0].innerHTML = 'Subir Guifo'
@@ -76,20 +83,23 @@ async function parar() {
 
 async function stopRecordingCallback() {
     video.srcObject = null;
-    stream = await recorder.getBlob();
-    let blob = stream.slice(0, stream.size, "video/webm")
-    video.src = URL.createObjectURL(blob);
+    //video.srcObject = recorder.getBlob().video
+    let blobs = recorder.getBlob();
+    //console.log(preview())
+    //video.srcObject = await preview()
+    video.src = URL.createObjectURL(blobs.video);
     recorder.stream.getTracks()[0].stop();
 
-    await recorder.reset();
+    //await recorder.reset();
     await recorder.destroy();
 
     recorder = null;
+    stream = blobs;
 }
 
 async function subir() {
     let formData = new FormData();
-    formData.append("file",stream,"gif.gif")
+    formData.append("file",stream.gif,"gif.gif")
     let init = {
         method: "POST",
         body: formData,
@@ -102,7 +112,7 @@ async function subir() {
             localStorage.setItem('misGuifos',json.data.id + ',' + misGuifos)
             misGuifos = fetchGifs()
         }
-        document.getElementById('descargar').setAttribute('onclick','invokeSaveAsDialog(stream,TuGuifo.gif)');
+        document.getElementById('descargar').setAttribute('onclick','invokeSaveAsDialog(stream.gif,TuGuifo.gif)');
         document.getElementById('copiar').setAttribute('onclick','copiar()');
         subido()
     })
@@ -110,19 +120,23 @@ async function subir() {
 }
 
 function subido() {
+    obtenerGuifos()
     copiar()
     document.getElementsByClassName('repetir')[0].setAttribute('hidden',true);
     document.getElementsByClassName('subir')[0].innerHTML = 'Listo'
+    document.getElementsByClassName('subir')[0].setAttribute('onclick',"location.href='./misGifos.html")
     document.getElementsByClassName('crear')[0].children[1].setAttribute('hidden',true);
     document.getElementsByClassName('crear')[0].children[2].setAttribute('hidden',true);
-    document.getElementById('subido').removeAttribute('hidden')
-    obtenerGuifos()
+    document.getElementsByClassName('captura')[0].setAttribute('hidden',true);
+    document.getElementById('subido').classList.remove("hidden")
+    document.getElementsByClassName('crear')[0].removeAttribute('hidden')
 }
 
 async function copiar() {
-    await fetch('api.giphy.com/v1/gifs/'+ misGuifos.split(',')[0] +'?'+apikey)
-    .then(function(response) {response.json()})
+    await fetch('https://api.giphy.com/v1/gifs/'+ misGuifos[0] +'?'+apikey)
+    .then(function(response) {return response.json()})
     .then(function(json) {
+        console.log(json)
         navigator.clipboard.writeText(json.data.url).then(function() {
             console.log('Async: Copying to clipboard was successful!');
         }, function(err) {
