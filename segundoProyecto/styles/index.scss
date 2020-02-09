@@ -374,3 +374,22 @@ nav ul ul {
         display: none;
     }
 }
+
+#subiendo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    width: 95%;
+    height: 80%;
+    p:first-child {
+        font-weight: 700;
+        font-size: 1.6rem;
+        line-height: 2.2rem;
+        text-align: center;
+    }
+    & > #loading
+    &.hidden {
+        display: none;
+    }
+}

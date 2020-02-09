@@ -3,12 +3,12 @@ const apikey = "api_key=HAH9qg4gGd6m3JwsSJUWkAL6mvkcEVBp"
 // Temas
 
 window.onkeypress = function(event) {
-    if(event.keyCode == 13 && event.target.matches('#barBuscar')) {
+    if(event.keyCode === 13 && event.target.matches('#barBuscar')) {
         this.search(document.getElementById("barBuscar").value)
     }
 }
 
-if(localStorage.getItem('tema')=="oscuro"){cambiarTema()}
+if(localStorage.getItem('tema')==="oscuro"){cambiarTema()}
 
 function abrirMenu(id,force) {
     document.getElementById(id).classList.toggle("mostrar",force);
@@ -36,7 +36,7 @@ function ratio(w,h) {
 // Sugerencias
 
 function fetchSug() {
-    if(localStorage.getItem('lastSearchs') == null) {localStorage.setItem('lastSearchs',
+    if(localStorage.getItem('lastSearchs') === null) {localStorage.setItem('lastSearchs',
         "gato;perro;animales;programming;white guy blinking;"/*"john travolta";*/+"billie eilish;rick and morty;los simpsons;internet;html;css;beproud;lgbtq+;"
     )}
     let sugerencias = localStorage.getItem('lastSearchs').split(';')
@@ -72,7 +72,7 @@ function index(sugerAux) {
     for(let i=1;i<=4;i++) {
         //console.log(i);
         document.getElementById("sug" + i).innerHTML = sugerAux[i - 1] + '<img src="./images/button%20close.svg" alt="button close">';
-        document.getElementById("sug" + i).addEventListener("click", function (event) {if(event.target.alt == "button close"){
+        document.getElementById("sug" + i).addEventListener("click", function (event) {if(event.target.alt === "button close"){
             let a1 = localStorage.getItem('lastSearchs')
             let a2 = a1.split(document.getElementById(this.id).innerText+';')
             let a3 = a2[0]+a2[1]
@@ -87,7 +87,7 @@ function index(sugerAux) {
         .then(function (json) {
             //console.log(json);
             for(let x=0;x<json.data.length;x++){
-                if(ratio(json.data[x].images.downsized.width,json.data[x].images.downsized.height) == 0){
+                if(ratio(json.data[x].images.downsized.width,json.data[x].images.downsized.height) === 0){
                     //document.getElementById("sugImg" + i).getAttribute("src") = json.data.images.downsized.url;
                     document.getElementById("sugImg" + i).setAttribute("src",json.data[x].images.downsized.url)
                     document.getElementById("sugBtn" + i).setAttribute("onclick","location.href='"+json.data[x].url+"'")
@@ -96,7 +96,7 @@ function index(sugerAux) {
                 }
             }
         })
-        if (i==4) {trend()}
+        if (i===4) {trend()}
     }
     
 }
@@ -118,16 +118,16 @@ async function trend() {
                 let node = document.createElement("li");
                 node.innerHTML = '<img src="'+ json.data[i].images.downsized.url +'" alt="gif"><p>#'+ json.data[i].title.split("GIF")[0] +'</p>';
                 node.setAttribute("onclick","location.href='"+json.data[i].url+"'");
-                if (json.data[i].title.split("GIF")[0] == "") {
+                if (json.data[i].title.split("GIF")[0] === "") {
                     node.innerHTML = '<img src="'+ json.data[i].images.downsized.url +'" alt="gif"><p>#no-title '+ json.data[i].title +'</p>';
                 }
                 //node.innerHTML = '<img src="'+ json.data[i].images.downsized.url +'" alt="gif"><p>#'+ ratio +'</p>';
                 let imgRatio = ratio(json.data[i].images.downsized.width,json.data[i].images.downsized.height);
-                if(imgRatio == 0) {
+                if(imgRatio === 0) {
                     tendencias.appendChild(node);
                     chicas++;
                     c++;
-                } else if (imgRatio == 1 && chicas >= grandes) {
+                } else if (imgRatio === 1 && chicas >= grandes) {
                     tendencias.appendChild(node);
                     chicas=0;
                     c++;
@@ -163,7 +163,7 @@ if(!document.location.pathname.includes('misGifos.html')){
         //console.log(document.getElementsByClassName("autofill")[0].children)
         let array = localStorage.getItem('lastSearchs').split(';');
         for(let i=array.length-1;i>=0;i--){
-            if (array[i].includes(termino) == false){
+            if (array[i].includes(termino) === false){
                 array.splice(i, 1);
             }
         }
@@ -189,7 +189,7 @@ if(!document.location.pathname.includes('misGifos.html')){
 function search(texto) {
     const busqueda = document.getElementsByClassName('busqueda');
     if(texto.length >= 1) {
-        //if(localStorage.getItem('lastSearchs') == null) {localStorage.setItem('lastSearchs','')}
+        //if(localStorage.getItem('lastSearchs') === null) {localStorage.setItem('lastSearchs','')}
         // temp = localStorage.getItem('lastSearch')
         
         if(!fetchSug().includes(texto)){

@@ -1,6 +1,6 @@
 function modo() {
     var params = new URLSearchParams(location.search)
-    if(params.get('modo') == 'crear'){return true}
+    if(params.get('modo') === 'crear'){return true}
     else {return false}
 }
 
@@ -31,7 +31,7 @@ function obtenerGuifos() {
             let node = document.createElement("li");
             node.innerHTML = '<img src="'+ json.data[i].images.downsized.url +'" alt="gif"><p>#'+ json.data[i].title.split("GIF")[0] +'</p>';
             node.setAttribute("onclick","location.href='"+json.data[i].url+"'");
-            if (json.data[i].title.split("GIF")[0] == "") {
+            if (json.data[i].title.split("GIF")[0] === "") {
                 node.innerHTML = '<img src="'+ json.data[i].images.downsized.url +'" alt="gif"><p>#no-title '+ json.data[i].title +'</p>';
             }
             document.getElementById("misGifos").insertBefore(node,document.getElementById("misGifos").firstElementChild);
@@ -98,6 +98,10 @@ async function stopRecordingCallback() {
 }
 
 async function subir() {
+    document.getElementsByClassName('captura')[0].setAttribute('hidden',true);
+    document.getElementsByClassName('crear')[0].removeAttribute('hidden');
+    document.getElementById('subiendo').removeAttribute("hidden");
+
     let formData = new FormData();
     formData.append("file",stream.gif,"gif.gif")
     let init = {
@@ -108,11 +112,11 @@ async function subir() {
     .then(function (response) {return response.json()})
     .then(function (json) {
         console.log(json)
-        if(json.meta.status == 200) {
+        if(json.meta.status === 200) {
             localStorage.setItem('misGuifos',json.data.id + ',' + misGuifos)
             misGuifos = fetchGifs()
         }
-        document.getElementById('descargar').setAttribute('onclick','invokeSaveAsDialog(stream.gif,TuGuifo.gif)');
+        document.getElementById('descargar').setAttribute('onclick','invokeSaveAsDialog(stream.gif,´TuGuifo.gif´)');
         document.getElementById('copiar').setAttribute('onclick','copiar()');
         subido()
     })
@@ -122,14 +126,23 @@ async function subir() {
 function subido() {
     obtenerGuifos()
     copiar()
+
+    const crear = document.getElementsByClassName('crear')[0]
+    const botones = document.getElementsByClassName('botones')[0]
+    const comenzar = botones.getElementsByClassName('comenzar')[0]
+
     document.getElementsByClassName('repetir')[0].setAttribute('hidden',true);
-    document.getElementsByClassName('subir')[0].innerHTML = 'Listo'
-    document.getElementsByClassName('subir')[0].setAttribute('onclick',"location.href='./misGifos.html")
-    document.getElementsByClassName('crear')[0].children[1].setAttribute('hidden',true);
-    document.getElementsByClassName('crear')[0].children[2].setAttribute('hidden',true);
-    document.getElementsByClassName('captura')[0].setAttribute('hidden',true);
+
+    comenzar.innerHTML = 'Listo'
+    comenzar.setAttribute('onclick',"location.href='./misGifos.html")
+
+    crear.children[1].setAttribute('hidden',true);
+    crear.children[2].setAttribute('hidden',true);
+    crear.removeAttribute('hidden')
+
     document.getElementById('subido').classList.remove("hidden")
-    document.getElementsByClassName('crear')[0].removeAttribute('hidden')
+
+    botones.getElementsByClassName('cancelar')[0].setAttribute('hidden',true)
 }
 
 async function copiar() {
