@@ -52,7 +52,7 @@ async function empezarGuifo() {
     stream = await navigator.mediaDevices.getUserMedia({video: true});
     video.srcObject = stream;
     //console.log(video.srcObject);
-    document.getElementsByClassName('crear')[0].setAttribute('hidden',true);
+    document.getElementsByClassName('crear')[0].classList.add('hidden');
     document.getElementsByClassName('misGuifos')[0].setAttribute('hidden',true);
     document.getElementsByClassName('captura')[0].removeAttribute('hidden');
     recorder = new MRecordRTC()
@@ -99,8 +99,11 @@ async function stopRecordingCallback() {
 
 async function subir() {
     document.getElementsByClassName('captura')[0].setAttribute('hidden',true);
-    document.getElementsByClassName('crear')[0].removeAttribute('hidden');
-    document.getElementById('subiendo').removeAttribute("hidden");
+    document.getElementsByClassName('textCrear')[0].setAttribute('hidden',true);
+    document.getElementsByClassName('crear')[0].classList.remove('hidden');
+    document.getElementsByClassName('crear')[0].getElementsByTagName('img')[0].setAttribute('hidden',true);
+    document.getElementById('subiendo').classList.remove("hidden");
+    document.getElementById('loading').children[0].classList.add('cargando');
 
     let formData = new FormData();
     formData.append("file",stream.gif,"gif.gif")
@@ -124,6 +127,8 @@ async function subir() {
 }
 
 function subido() {
+    document.getElementById('loading').children[0].classList.add('cargado');
+    
     obtenerGuifos()
     copiar()
 

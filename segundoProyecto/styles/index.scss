@@ -253,6 +253,8 @@ nav ul ul {
     height: 38.6rem;
     width: 68.4rem;
     margin: 7.5rem auto;
+    display: flex;
+    flex-direction: column;
     p, li {
         color: black;
         width: auto;
@@ -268,6 +270,7 @@ nav ul ul {
         position: relative;
         top: 3rem;
         left: 2.5rem;
+        width: 3.2rem;
     }
     & > div.textCrear, & > #subido > div {
         margin: 0 7rem;
@@ -380,16 +383,49 @@ nav ul ul {
     justify-content: center;
     align-items: center;
     flex-flow: column wrap;
+    flex-grow: 2;
     width: 95%;
-    height: 80%;
+    height: auto;
     p:first-child {
         font-weight: 700;
         font-size: 1.6rem;
         line-height: 2.2rem;
         text-align: center;
     }
-    & > #loading
+    & > #loading {
+        padding: 6px;
+        background: rgba(0, 0, 0, 0.10);
+        border-radius: 4px;
+        width: 80%;
+        & > .barraLoading {
+            height: 24px;
+            border-radius: 4px;
+            background-color: #86e01e61;
+            width: 5%;
+            transition: width 1s ease;
+        }
+        & > .cargando {
+            animation: 15s ease 1 normal cargando;
+            width: 75%;
+        }
+        & > .cargado {
+            width: 100%;
+        }
+    }
     &.hidden {
         display: none;
     }
+}
+
+@keyframes cargando {
+    0% {
+        width: 5%;
+    }
+    100% {
+        width: 75%;
+    }
+}
+
+.hidden {
+    display: none;
 }

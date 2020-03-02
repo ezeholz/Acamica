@@ -398,6 +398,13 @@ nav ul ul li {
   height: 38.6rem;
   width: 68.4rem;
   margin: 7.5rem auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .crear p, .crear li {
@@ -417,6 +424,7 @@ nav ul ul li {
   position: relative;
   top: 3rem;
   left: 2.5rem;
+  width: 3.2rem;
 }
 
 .crear > div.textCrear, .crear > #subido > div {
@@ -579,8 +587,11 @@ nav ul ul li {
   -webkit-box-direction: normal;
       -ms-flex-flow: column wrap;
           flex-flow: column wrap;
+  -webkit-box-flex: 2;
+      -ms-flex-positive: 2;
+          flex-grow: 2;
   width: 95%;
-  height: 80%;
+  height: auto;
 }
 
 #subiendo p:first-child {
@@ -590,7 +601,55 @@ nav ul ul li {
   text-align: center;
 }
 
+#subiendo > #loading {
+  padding: 6px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  width: 80%;
+}
+
+#subiendo > #loading > .barraLoading {
+  height: 24px;
+  border-radius: 4px;
+  background-color: #86e01e61;
+  width: 5%;
+  -webkit-transition: width 1s ease;
+  transition: width 1s ease;
+}
+
+#subiendo > #loading > .cargando {
+  -webkit-animation: 15s ease 1 normal cargando;
+          animation: 15s ease 1 normal cargando;
+  width: 75%;
+}
+
+#subiendo > #loading > .cargado {
+  width: 100%;
+}
+
 #subiendo.hidden {
+  display: none;
+}
+
+@-webkit-keyframes cargando {
+  0% {
+    width: 5%;
+  }
+  100% {
+    width: 75%;
+  }
+}
+
+@keyframes cargando {
+  0% {
+    width: 5%;
+  }
+  100% {
+    width: 75%;
+  }
+}
+
+.hidden {
   display: none;
 }
 /*# sourceMappingURL=index.css.map */
