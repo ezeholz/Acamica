@@ -1,0 +1,7 @@
+post:
+  tags:
+    - Usuarios
+  summary: Crear un usuario
+  responses:
+    '200':
+      description: Exito

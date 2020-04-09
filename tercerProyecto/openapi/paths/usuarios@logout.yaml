@@ -1,0 +1,7 @@
+get:
+  tags:
+    - Usuarios
+  summary: Desloguea al usuario
+  responses:
+    '200':
+      description: Exito

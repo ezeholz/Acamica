@@ -1,0 +1,15 @@
+get:
+  tags:
+    - Pedidos
+  summary: Obtener todos los pedidos
+  responses:
+    '200':
+      description: Exito
+post:
+  tags:
+    - Pedidos
+  summary: Crear un pedido nuevo
+  description: Se necesita estar logueado
+  responses:
+    '200':
+      description: ''

@@ -1,0 +1,15 @@
+get:
+  tags:
+    - Productos
+  summary: Listar todos los productos
+  description: Tiene que estar logueado
+  responses:
+    '200':
+      description: Exito
+post:
+  tags:
+    - Productos
+  summary: Generar un producto nuevo
+  responses:
+    '200':
+      description: Exito
