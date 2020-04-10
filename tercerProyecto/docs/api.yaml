@@ -1,0 +1,161 @@
+openapi: 3.0.0
+info:
+  title: Delilah Resto
+  version: 0.0.1
+tags:
+  - name: Pedidos
+    description: Endpoint de pedidos
+  - name: Productos
+    description: Endpoint de productos
+  - name: Usuarios
+    description: Endpoint de acceso
+paths:
+  /pedidos:
+    get:
+      tags:
+        - Pedidos
+      summary: Obtener todos los pedidos
+      responses:
+        '200':
+          description: Exito
+    post:
+      tags:
+        - Pedidos
+      summary: Crear un pedido nuevo
+      description: Se necesita estar logueado
+      responses:
+        '200':
+          description: ''
+  '/pedidos/{id}':
+    get:
+      tags:
+        - Pedidos
+      summary: Obtener pedido por ID
+      parameters:
+        - name: id
+          in: path
+          description: ID del pedido
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Exito
+  '/pedidos/{id}/status':
+    put:
+      tags:
+        - Pedidos
+      summary: Modificar Status de Pedido
+      parameters:
+        - name: id
+          in: path
+          description: ID del pedido
+          required: true
+          schema:
+            type: integer
+        - name: status
+          in: query
+          description: Status del pedido
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Exito
+  /productos:
+    get:
+      tags:
+        - Productos
+      summary: Listar todos los productos
+      description: Tiene que estar logueado
+      responses:
+        '200':
+          description: Exito
+    post:
+      tags:
+        - Productos
+      summary: Generar un producto nuevo
+      responses:
+        '200':
+          description: Exito
+  '/productos/{id}':
+    get:
+      tags:
+        - Productos
+      summary: Obtener un producto por ID
+      parameters:
+        - name: id
+          in: path
+          description: ID del producto
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Exito
+    put:
+      tags:
+        - Productos
+      summary: Modificar un producto
+      parameters:
+        - name: id
+          in: path
+          description: ID del producto
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Exito
+    delete:
+      tags:
+        - Productos
+      summary: Borrar producto
+      parameters:
+        - name: id
+          in: path
+          description: ID del producto
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Exito
+  /usuarios:
+    post:
+      tags:
+        - Usuarios
+      summary: Crear un usuario
+      responses:
+        '200':
+          description: Exito
+  /usuarios/login:
+    get:
+      tags:
+        - Usuarios
+      summary: Loguea al usuario
+      parameters:
+        - name: username
+          in: query
+          description: Usuario
+          required: true
+          schema:
+            type: string
+        - name: password
+          in: query
+          description: Contraseña
+          required: true
+          schema:
+            type: string
+            format: password
+      responses:
+        '200':
+          description: Exito
+  /usuarios/logout:
+    get:
+      tags:
+        - Usuarios
+      summary: Desloguea al usuario
+      responses:
+        '200':
+          description: Exito
