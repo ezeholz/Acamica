@@ -16,14 +16,15 @@ function start() {
     sql = sql+', telefono INT UNSIGNED NOT NULL, dir VARCHAR(255) NOT NULL'
     db.run(sql+')',function(err) {
         if(err) throw err;
-        console.log("Creada!")
+        console.log("Creada Usuarios!")
+        admin()
     })
 
     sql = 'CREATE TABLE productos (id INT AUTO_INCREMENT PRIMARY KEY, nombre VARCHAR(255) NOT NULL'
     sql = sql+', short VARCHAR(255) NOT NULL UNIQUE, img VARCHAR(255), precio INT UNSIGNED NOT NULL'
     db.run(sql+')',function(err) {
         if(err) throw err;
-        console.log("Creada 2!")
+        console.log("Creada Productos!")
     })
 
     sql = 'CREATE TABLE pedidos (id INT AUTO_INCREMENT PRIMARY KEY, status INT UNSIGNED NOT NULL'
@@ -31,16 +32,29 @@ function start() {
     sql = sql+', usuario INT UNSIGNED NOT NULL, pago INT UNSIGNED NOT NULL' // 0 o 1 para efectivo
     db.run(sql+')',function(err) {
         if(err) throw err;
-        console.log("Creada 3!")
+        console.log("Creada Pedidos!")
     })
 }
 
-db.run("INSERT INTO usuarios(username, password, nombre, correo, telefono, dir) VALUES ('admin','admin','admin','admin','0','admin')",function(err) {
-    if(err) throw err
-    console.log("Hecho")
-    db.each('SELECT Name FROM usuarios',function(err,row) {
+function admin() {
+    db.run("INSERT INTO usuarios(username, password, nombre, correo, telefono, dir) VALUES ('admin','admin','admin','admin','0','admin')",function(err) {
         if(err) throw err
-        console.log("Encontrado " + row)
+        console.log("Hecho admin")
+        // db.each('SELECT Nombre nombre FROM usuarios',function(err,row) {
+        //     if(err) throw err
+        //     console.log("Encontrado " + row.nombre)
+        // })
     })
+}
+
+// Express
+
+const app = express()
+
+app.get('/pedidos', function(request,response) {
+    console.log("Llegó pedido")
 })
-// 
+
+const listener = app.listen(8000, function() {
+    console.log("Servidor en localhost:"+listener.address().port)
+})
