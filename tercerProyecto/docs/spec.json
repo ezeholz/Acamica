@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Delilah Resto",
-    "version": "0.0.4",
+    "version": "0.1.0",
     "description": "Delilah Resto API se compone de endpoints preparados para una aplicación de pedidos, donde le permitiría a los usuarios registrarse, hacer su pedido de acuerdo a productos existentes, y enviarlo. También se brindarán endpoints para administradores, que podran ver los pedidos, actualizarlos, así como actualizar los productos, agregar nuevos, o eliminarlos",
     "contact": {
       "name": "Ezequiel G. Holzweissig",
@@ -43,7 +43,7 @@
         "summary": "Obtener todos los pedidos",
         "security": [
           {
-            "api_key": []
+            "Auth": []
           }
         ],
         "responses": {
@@ -54,11 +54,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "allOf": [
-                      {
-                        "$ref": "#/components/schemas/Pedido"
-                      }
-                    ]
+                    "$ref": "#/components/schemas/Pedidos"
                   }
                 }
               }
@@ -81,19 +77,11 @@
         ],
         "summary": "Crear un pedido nuevo",
         "requestBody": {
-          "description": "Pedido a realizar",
-          "required": true,
-          "content": {
-            "*/*": {
-              "schema": {
-                "$ref": "#/components/schemas/Pedido"
-              }
-            }
-          }
+          "$ref": "#/components/requestBodies/Producto"
         },
         "security": [
           {
-            "api_key": []
+            "Auth": []
           }
         ],
         "responses": {
@@ -117,7 +105,7 @@
         "summary": "Obtener pedido por ID",
         "security": [
           {
-            "api_key": []
+            "Auth": []
           }
         ],
         "parameters": [
@@ -133,14 +121,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pedido"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Pedido"
           },
           "401": {
             "description": "Se necesita autenticación"
@@ -171,29 +152,15 @@
         ],
         "security": [
           {
-            "api_key": []
+            "Auth": []
           }
         ],
         "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Pedido"
-              }
-            }
-          }
+          "$ref": "#/components/requestBodies/modPedidos"
         },
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pedido"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Pedido"
           },
           "400": {
             "description": "Bad Request"
@@ -218,26 +185,12 @@
         "summary": "Listar todos los productos",
         "security": [
           {
-            "api_key": []
+            "Auth": []
           }
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "allOf": [
-                      {
-                        "$ref": "#/components/schemas/Producto"
-                      }
-                    ]
-                  }
-                }
-              }
-            }
+            "$ref": "#/components/responses/Producto"
           },
           "401": {
             "description": "Se necesita autenticación"
@@ -253,30 +206,16 @@
         ],
         "summary": "Generar un producto nuevo",
         "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Producto"
-              }
-            }
-          }
+          "$ref": "#/components/requestBodies/Producto"
         },
         "security": [
           {
-            "api_key": []
+            "Auth": []
           }
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Producto"
-                }
-              }
-            }
+            "description": "OK"
           },
           "400": {
             "description": "Bad Request"
@@ -309,19 +248,12 @@
         ],
         "security": [
           {
-            "api_key": []
+            "Auth": []
           }
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Producto"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Producto"
           },
           "401": {
             "description": "Se necesita autenticación"
@@ -349,29 +281,15 @@
         ],
         "security": [
           {
-            "api_key": []
+            "Auth": []
           }
         ],
         "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Producto"
-              }
-            }
-          }
+          "$ref": "#/components/requestBodies/Producto"
         },
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Producto"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Producto"
           },
           "400": {
             "description": "Bad Request"
@@ -405,7 +323,7 @@
         ],
         "security": [
           {
-            "api_key": []
+            "Auth": []
           }
         ],
         "responses": {
@@ -431,15 +349,7 @@
         ],
         "summary": "Crear un usuario",
         "requestBody": {
-          "description": "Pedido a realizar",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Usuario"
-              }
-            }
-          }
+          "$ref": "#/components/requestBodies/Usuario"
         },
         "responses": {
           "200": {
@@ -496,7 +406,7 @@
         "summary": "Desloguea al usuario",
         "security": [
           {
-            "api_key": []
+            "Auth": []
           }
         ],
         "responses": {
@@ -511,22 +421,246 @@
     }
   },
   "components": {
-    "schemas": {
+    "responses": {
+      "Producto": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nombre": {
+                  "type": "string"
+                },
+                "short": {
+                  "type": "string"
+                },
+                "img": {
+                  "type": "string"
+                },
+                "precio": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      },
       "Pedido": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Pedidos"
+            }
+          }
+        }
+      }
+    },
+    "requestBodies": {
+      "Producto": {
+        "description": "Producto a crear",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nombre": {
+                  "type": "string"
+                },
+                "short": {
+                  "type": "string"
+                },
+                "img": {
+                  "type": "string"
+                },
+                "precio": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Usuario": {
+        "description": "Usuario a crear",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string",
+                  "format": "password"
+                },
+                "nombre": {
+                  "type": "string"
+                },
+                "correo": {
+                  "type": "string"
+                },
+                "telefono": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "dir": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Nota": {
+        "description": "Nota de pedido a realizar",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Productos": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "nombre": {
+                        "type": "string"
+                      },
+                      "short": {
+                        "type": "string"
+                      },
+                      "img": {
+                        "type": "string"
+                      },
+                      "precio": {
+                        "type": "integer",
+                        "format": "int32"
+                      }
+                    }
+                  }
+                },
+                "Efectivo": {
+                  "type": "boolean",
+                  "description": "Paga en efectivo"
+                }
+              }
+            }
+          }
+        }
+      },
+      "basePedidos": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "prod": {
+                  "type": "string",
+                  "description": "ID's de los productos pedidos",
+                  "example": "3,4,6,1,0,2"
+                },
+                "pago": {
+                  "type": "boolean",
+                  "description": "Paga en efectivo"
+                }
+              }
+            }
+          }
+        }
+      },
+      "modPedidos": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer"
+                },
+                "hora": {
+                  "type": "string",
+                  "example": "16:42"
+                },
+                "prod": {
+                  "type": "string",
+                  "description": "ID's de los productos pedidos",
+                  "example": "3,4,6,1,0,2"
+                },
+                "usuario": {
+                  "type": "integer"
+                },
+                "pago": {
+                  "type": "boolean",
+                  "description": "Paga en efectivo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "Pedidos": {
         "type": "object",
         "properties": {
           "Cliente": {
-            "$ref": "#/components/schemas/Cliente"
+            "type": "object",
+            "properties": {
+              "nombre": {
+                "type": "string"
+              },
+              "direccion": {
+                "type": "string"
+              },
+              "telefono": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
           },
           "Productos": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Producto"
+              "type": "object",
+              "properties": {
+                "Cantidad": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "Producto": {
+                  "type": "object",
+                  "properties": {
+                    "nombre": {
+                      "type": "string"
+                    },
+                    "short": {
+                      "type": "string"
+                    },
+                    "img": {
+                      "type": "string"
+                    },
+                    "precio": {
+                      "type": "integer",
+                      "format": "int32"
+                    }
+                  }
+                }
+              }
             }
           },
           "Hora": {
             "type": "string",
-            "format": "date-time"
+            "example": "16:42"
           },
           "Status": {
             "type": "integer",
@@ -536,68 +670,10 @@
             "type": "boolean"
           }
         }
-      },
-      "Cliente": {
-        "type": "object",
-        "properties": {
-          "Nombre": {
-            "type": "string"
-          },
-          "Direccion": {
-            "type": "string"
-          },
-          "Telefono": {
-            "type": "integer",
-            "format": "int64"
-          }
-        }
-      },
-      "Usuario": {
-        "type": "object",
-        "properties": {
-          "username": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string",
-            "format": "password"
-          },
-          "nombre": {
-            "type": "string"
-          },
-          "correo": {
-            "type": "string"
-          },
-          "telefono": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "dir": {
-            "type": "string"
-          }
-        }
-      },
-      "Producto": {
-        "type": "object",
-        "properties": {
-          "Nombre": {
-            "type": "string"
-          },
-          "Short": {
-            "type": "string"
-          },
-          "Img": {
-            "type": "string"
-          },
-          "Precio": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
       }
     },
     "securitySchemes": {
-      "api_key": {
+      "Auth": {
         "type": "http",
         "scheme": "bearer",
         "bearerFormat": "JWT"
