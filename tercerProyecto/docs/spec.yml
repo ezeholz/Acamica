@@ -1,17 +1,18 @@
 openapi: 3.0.0
 info:
   title: Delilah Resto
-  description: "Delilah Resto API se compone de endpoints preparados para una aplicacion de pedidos, donde le permitiria a los usuarios registrarse, hacer su pedido de acuerdo a productos existentes, y enviarlo.
-  Tambien se brindaran endpoints para administradores, que podran ver los pedidos, actualizarlos, asi como actualizar los productos, agregar nuevos, o eliminarlos"
+  version: 0.0.4
+  description: "Delilah Resto API se compone de endpoints preparados para una aplicación de pedidos, donde le permitiría a los usuarios registrarse, hacer su pedido de acuerdo a productos existentes, y enviarlo.
+  También se brindarán endpoints para administradores, que podran ver los pedidos, actualizarlos, así como actualizar los productos, agregar nuevos, o eliminarlos"
   contact:
     name: Ezequiel G. Holzweissig
     url: https://ezeholz.github.io
     email: ezequielgh1999@gmail.com
-  version: 0.0.4
 servers: 
 - url: http://localhost:8000
   description: Computadora Local
 - url: http://192.168.2.102:8000
+  description: Testing IP
 tags:
   - name: Pedidos
     description: Endpoint de pedidos
@@ -38,7 +39,7 @@ paths:
                   allOf:
                   - $ref: "#/components/schemas/Pedido"
         '401':
-          description: "Se necesita autenticacion"
+          description: "Se necesita autenticación"
         '403':
           description: "Solo usuarios autorizados pueden acceder"
         '404':
@@ -62,7 +63,7 @@ paths:
         '400':
           description: "Bad Request"
         '401':
-          description: "Se necesita autenticacion"
+          description: "Se necesita autenticación"
   '/pedidos/{id}':
     get:
       tags:
@@ -85,7 +86,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Pedido"
         '401':
-          description: "Se necesita autenticacion"
+          description: "Se necesita autenticación"
         '403':
           description: "Solo usuarios autorizados pueden acceder"
         '404':
@@ -119,7 +120,7 @@ paths:
         '400':
           description: "Bad Request"
         '401':
-          description: "Se necesita autenticacion"
+          description: "Se necesita autenticación"
         '403':
           description: "Solo usuarios autorizados pueden acceder"
         '404':
@@ -142,7 +143,7 @@ paths:
                   allOf:
                   - $ref: '#/components/schemas/Producto'
         '401':
-          description: "Se necesita autenticacion"
+          description: "Se necesita autenticación"
         '404':
           description: "Not Found"
     post:
@@ -167,7 +168,7 @@ paths:
         '400':
           description: "Bad Request"
         '401':
-          description: "Se necesita autenticacion"
+          description: "Se necesita autenticación"
         '403':
           description: "Solo usuarios autorizados pueden acceder"
   '/productos/{id}':
@@ -192,7 +193,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Producto'
         '401':
-          description: "Se necesita autenticacion"
+          description: "Se necesita autenticación"
         '404':
           description: "No se ha encontrado"
     put:
@@ -224,7 +225,7 @@ paths:
         '400':
           description: "Bad Request"
         '401':
-          description: "Se necesita autenticacion"
+          description: "Se necesita autenticación"
         '403':
           description: "Solo usuarios autorizados pueden acceder"
         '404':
@@ -246,7 +247,7 @@ paths:
         '200':
           description: "OK"
         '401':
-          description: "Se necesita autenticacion"
+          description: "Se necesita autenticación"
         '403':
           description: "Solo usuarios autorizados pueden acceder"
         '404':
@@ -303,7 +304,7 @@ paths:
         '200':
           description: Exito
         '401':
-          description: "Se necesita autenticacion"
+          description: "Se necesita autenticación"
 
 components:
   schemas:
