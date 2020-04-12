@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Delilah Resto",
-    "version": "1.0.4",
+    "version": "1.1.0",
     "description": "Delilah Resto API se compone de endpoints preparados para una aplicación de pedidos, donde le permitiría a los usuarios registrarse, hacer su pedido de acuerdo a productos existentes, y enviarlo. También se brindarán endpoints para administradores, que podran ver los pedidos, actualizarlos, así como actualizar los productos, agregar nuevos, o eliminarlos",
     "contact": {
       "name": "Ezequiel G. Holzweissig",
@@ -48,7 +48,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "",
             "content": {
               "application/json": {
                 "schema": {
@@ -61,13 +61,13 @@
             }
           },
           "401": {
-            "description": "Se necesita autenticación"
+            "description": ""
           },
           "403": {
-            "description": "Solo usuarios autorizados pueden acceder"
+            "description": ""
           },
           "404": {
-            "description": "Not Found"
+            "description": ""
           }
         }
       },
@@ -86,13 +86,13 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": ""
           },
           "400": {
-            "description": "Bad Request"
+            "description": ""
           },
           "401": {
-            "description": "Se necesita autenticación"
+            "description": ""
           }
         }
       }
@@ -124,13 +124,13 @@
             "$ref": "#/components/responses/Pedido"
           },
           "401": {
-            "description": "Se necesita autenticación"
+            "description": ""
           },
           "403": {
-            "description": "Solo usuarios autorizados pueden acceder"
+            "description": ""
           },
           "404": {
-            "description": "No se ha encontrado"
+            "description": ""
           }
         }
       },
@@ -163,16 +163,16 @@
             "$ref": "#/components/responses/Pedido"
           },
           "400": {
-            "description": "Bad Request"
+            "description": ""
           },
           "401": {
-            "description": "Se necesita autenticación"
+            "description": ""
           },
           "403": {
-            "description": "Solo usuarios autorizados pueden acceder"
+            "description": ""
           },
           "404": {
-            "description": "No se ha encontrado"
+            "description": ""
           }
         }
       }
@@ -193,10 +193,10 @@
             "$ref": "#/components/responses/Producto"
           },
           "401": {
-            "description": "Se necesita autenticación"
+            "description": ""
           },
           "404": {
-            "description": "Not Found"
+            "description": ""
           }
         }
       },
@@ -215,16 +215,16 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": ""
           },
           "400": {
-            "description": "Bad Request"
+            "description": ""
           },
           "401": {
-            "description": "Se necesita autenticación"
+            "description": ""
           },
           "403": {
-            "description": "Solo usuarios autorizados pueden acceder"
+            "description": ""
           }
         }
       }
@@ -256,10 +256,10 @@
             "$ref": "#/components/responses/Producto"
           },
           "401": {
-            "description": "Se necesita autenticación"
+            "description": ""
           },
           "404": {
-            "description": "No se ha encontrado"
+            "description": ""
           }
         }
       },
@@ -292,16 +292,16 @@
             "$ref": "#/components/responses/Producto"
           },
           "400": {
-            "description": "Bad Request"
+            "description": ""
           },
           "401": {
-            "description": "Se necesita autenticación"
+            "description": ""
           },
           "403": {
-            "description": "Solo usuarios autorizados pueden acceder"
+            "description": ""
           },
           "404": {
-            "description": "No se ha encontrado"
+            "description": ""
           }
         }
       },
@@ -328,16 +328,16 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": ""
           },
           "401": {
-            "description": "Se necesita autenticación"
+            "description": ""
           },
           "403": {
-            "description": "Solo usuarios autorizados pueden acceder"
+            "description": ""
           },
           "404": {
-            "description": "No se ha encontrado"
+            "description": ""
           }
         }
       }
@@ -353,10 +353,10 @@
         },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": ""
           },
           "400": {
-            "description": "Bad Request"
+            "description": ""
           }
         }
       }
@@ -393,7 +393,7 @@
             "$ref": "#/components/responses/token"
           },
           "404": {
-            "description": "No se ha encontrado"
+            "description": ""
           }
         }
       }
@@ -411,10 +411,10 @@
         ],
         "responses": {
           "200": {
-            "description": "Exito"
+            "description": ""
           },
           "401": {
-            "description": "Se necesita autenticación"
+            "description": ""
           }
         }
       }
@@ -423,7 +423,7 @@
   "components": {
     "responses": {
       "Producto": {
-        "description": "OK",
+        "description": "",
         "content": {
           "application/json": {
             "schema": {
@@ -433,7 +433,7 @@
         }
       },
       "Pedido": {
-        "description": "OK",
+        "description": "",
         "content": {
           "application/json": {
             "schema": {
@@ -443,8 +443,14 @@
         }
       },
       "token": {
-        "description": "OK",
+        "description": "",
         "content": {
+          "text/plain": {
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImV4YW1wbGUiLCJpYXQiOjE1ODY2NzczMzl9.Vtb7iWp3qBASmGb_vTY-TqzXKKEYin9g2Qt4U_EA0Uc"
+            }
+          },
           "application/json": {
             "schema": {
               "type": "object",

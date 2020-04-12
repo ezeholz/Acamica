@@ -289,7 +289,10 @@ app.get('/usuarios\*', async function(req,res) {
     if(req.originalUrl.split('/')[2]==="login"){
         const token = await autenticar(req.headers.username,req.headers.password)
         console.log(req.headers.username+" "+req.headers.password+" "+token)
-        if (token) res.status(200).send({'api_key':token})
+        if (token) switch(req.headers.accept.split("/")[0]=="text"){
+            case true: res.status(200).send(token);break;
+            case false: res.status(200).send({'api_key':token});break;
+        }
         else res.sendStatus(404)
     } else if(req.originalUrl.split('/')[2]==="logout"){
         const usuario = await verificarToken(req.headers.authorization.split(" ")[1])
