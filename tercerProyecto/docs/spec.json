@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Delilah Resto",
-    "version": "1.0.0",
+    "version": "1.0.4",
     "description": "Delilah Resto API se compone de endpoints preparados para una aplicación de pedidos, donde le permitiría a los usuarios registrarse, hacer su pedido de acuerdo a productos existentes, y enviarlo. También se brindarán endpoints para administradores, que podran ver los pedidos, actualizarlos, así como actualizar los productos, agregar nuevos, o eliminarlos",
     "contact": {
       "name": "Ezequiel G. Holzweissig",
@@ -390,7 +390,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Exito"
+            "$ref": "#/components/responses/token"
           },
           "404": {
             "description": "No se ha encontrado"
@@ -427,22 +427,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "type": "object",
-              "properties": {
-                "nombre": {
-                  "type": "string"
-                },
-                "short": {
-                  "type": "string"
-                },
-                "img": {
-                  "type": "string"
-                },
-                "precio": {
-                  "type": "integer",
-                  "format": "int32"
-                }
-              }
+              "$ref": "#/components/schemas/Producto"
             }
           }
         }
@@ -456,6 +441,22 @@
             }
           }
         }
+      },
+      "token": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "api_key": {
+                  "type": "string",
+                  "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImV4YW1wbGUiLCJpYXQiOjE1ODY2NzczMzl9.Vtb7iWp3qBASmGb_vTY-TqzXKKEYin9g2Qt4U_EA0Uc"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "requestBodies": {
@@ -465,22 +466,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "type": "object",
-              "properties": {
-                "nombre": {
-                  "type": "string"
-                },
-                "short": {
-                  "type": "string"
-                },
-                "img": {
-                  "type": "string"
-                },
-                "precio": {
-                  "type": "integer",
-                  "format": "int32"
-                }
-              }
+              "$ref": "#/components/schemas/Producto"
             }
           }
         }
@@ -491,29 +477,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "type": "object",
-              "properties": {
-                "username": {
-                  "type": "string"
-                },
-                "password": {
-                  "type": "string",
-                  "format": "password"
-                },
-                "nombre": {
-                  "type": "string"
-                },
-                "correo": {
-                  "type": "string"
-                },
-                "telefono": {
-                  "type": "integer",
-                  "format": "int64"
-                },
-                "dir": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/components/schemas/Usuario"
             }
           }
         }
@@ -529,22 +493,7 @@
                 "Productos": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "properties": {
-                      "nombre": {
-                        "type": "string"
-                      },
-                      "short": {
-                        "type": "string"
-                      },
-                      "img": {
-                        "type": "string"
-                      },
-                      "precio": {
-                        "type": "integer",
-                        "format": "int32"
-                      }
-                    }
+                    "$ref": "#/components/schemas/Producto"
                   }
                 },
                 "Efectivo": {
@@ -610,23 +559,44 @@
       }
     },
     "schemas": {
+      "Cliente": {
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "type": "string"
+          },
+          "direccion": {
+            "type": "string"
+          },
+          "telefono": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "Producto": {
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "type": "string"
+          },
+          "short": {
+            "type": "string"
+          },
+          "img": {
+            "type": "string"
+          },
+          "precio": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
       "Pedidos": {
         "type": "object",
         "properties": {
           "Cliente": {
-            "type": "object",
-            "properties": {
-              "nombre": {
-                "type": "string"
-              },
-              "direccion": {
-                "type": "string"
-              },
-              "telefono": {
-                "type": "integer",
-                "format": "int64"
-              }
-            }
+            "$ref": "#/components/schemas/Cliente"
           },
           "Productos": {
             "type": "array",
@@ -638,22 +608,7 @@
                   "format": "int32"
                 },
                 "Producto": {
-                  "type": "object",
-                  "properties": {
-                    "nombre": {
-                      "type": "string"
-                    },
-                    "short": {
-                      "type": "string"
-                    },
-                    "img": {
-                      "type": "string"
-                    },
-                    "precio": {
-                      "type": "integer",
-                      "format": "int32"
-                    }
-                  }
+                  "$ref": "#/components/schemas/Producto"
                 }
               }
             }
@@ -668,6 +623,31 @@
           },
           "Efectivo": {
             "type": "boolean"
+          }
+        }
+      },
+      "Usuario": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string",
+            "format": "password"
+          },
+          "nombre": {
+            "type": "string"
+          },
+          "correo": {
+            "type": "string"
+          },
+          "telefono": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "dir": {
+            "type": "string"
           }
         }
       }
