@@ -353,28 +353,10 @@
         },
         "responses": {
           "200": {
-            "$ref": "#/components/responses/Success"
+            "description": ""
           },
           "400": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                },
-                "examples": {
-                  "Usuario": {
-                    "$ref": "#/components/examples/username"
-                  },
-                  "Telefono": {
-                    "$ref": "#/components/examples/telefono"
-                  },
-                  "Correo": {
-                    "$ref": "#/components/examples/correo"
-                  }
-                }
-              }
-            }
+            "description": ""
           }
         }
       }
@@ -478,17 +460,6 @@
                   "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImV4YW1wbGUiLCJpYXQiOjE1ODY2NzczMzl9.Vtb7iWp3qBASmGb_vTY-TqzXKKEYin9g2Qt4U_EA0Uc"
                 }
               }
-            }
-          }
-        }
-      },
-      "Success": {
-        "description": "",
-        "content": {
-          "text/plain": {
-            "schema": {
-              "type": "string",
-              "example": "OK"
             }
           }
         }
@@ -685,17 +656,6 @@
             "type": "string"
           }
         }
-      }
-    },
-    "examples": {
-      "username": {
-        "value": "SQLITE_CONSTRAINT: UNIQUE constraint failed: usuarios.username"
-      },
-      "telefono": {
-        "value": "SQLITE_CONSTRAINT: UNIQUE constraint failed: usuarios.telefono"
-      },
-      "correo": {
-        "value": "SQLITE_CONSTRAINT: UNIQUE constraint failed: usuarios.correo"
       }
     },
     "securitySchemes": {
