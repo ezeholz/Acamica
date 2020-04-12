@@ -182,9 +182,11 @@ app.put('/pedidos\*',async function(req,res) {
     const usuario = await verificarToken(req.headers.authorization.split(" ")[1])
     if (usuario) {
         if (usuario == "admin") {
-            let hold = Object.values(req.body).map(function(a){'? = ?'}).join(', ')
-            db.run('UPDATE pedidos SET '+hold+' WHERE id = '+req.originalUrl.split('/')[2],Object.entries(req.body).join(',').split(','),function(){
-                db.get('SELECT * FROM pedidos WHERE id = '+req.originalUrl.split('/')[2],function(err,row){
+            let hold = []
+            for(let [a,] of Object.entries(req.body)){hold.push(a)}
+            let vals = Object.values(req.body).map(function(a){if(!isNaN(a)){return +a}else{return a}})
+            db.run('UPDATE pedidos SET '+hold.map(function(a){return a+' = ?'}).join(", ")+' WHERE id = '+req.originalUrl.split('/')[2],vals,function(){
+                db.get('SELECT * FROM pedidos WHERE id = '+this.lastID,function(err,row){
                     console.log(JSON.stringify(row))
                     res.status(200).json(row)
                 })
@@ -243,7 +245,15 @@ app.put('/productos\*',async function(req,res) {
     const usuario = await verificarToken(req.headers.authorization.split(" ")[1])
     if (usuario) {
         if (usuario == "admin") {
-            
+            let hold = []
+            for(let [a,] of Object.entries(req.body)){hold.push(a)}
+            let vals = Object.values(req.body).map(function(a){if(!isNaN(a)){return +a}else{return a}})
+            db.run('UPDATE pedidos SET '+hold.map(function(a){return a+' = ?'}).join(", ")+' WHERE id = '+req.originalUrl.split('/')[2],vals,function(){
+                db.get('SELECT * FROM productos WHERE id = '+this.lastID,function(err,row){
+                    console.log(JSON.stringify(row))
+                    res.status(200).json(row)
+                })
+            })
         }  else res.sendStatus(403)
     } else res.sendStatus(401)
 })
