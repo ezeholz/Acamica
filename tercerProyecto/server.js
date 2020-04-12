@@ -277,8 +277,7 @@ app.post('/usuarios', function(req,res) {
     const newUser = [req.body.username,req.body.password,req.body.nombre,req.body.correo,req.body.telefono,req.body.dir]
     db.run('INSERT INTO usuarios(username, password, nombre, correo, telefono, dir) VALUES (?,?,?,?,?,?)',newUser,function(err) {
         if(err) {
-            res.status(400).send(err)
-            console.log(err)
+            res.status(400).send(err.message)
             return
         }
         res.sendStatus(200)
