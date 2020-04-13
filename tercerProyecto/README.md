@@ -11,7 +11,7 @@ Fecha de entrega del trabajo: --/--/20
 ### Instalar
 
 1. Instala [Node.js v12.14.1](https://nodejs.org/download/release/v12.14.1/) 
-2. Cloná este repo y usá `npm install` en su carpeta principal.
+2. [Descargá la última versión](https://github.com/ezeholz/Acamica/releases/tag/3.1.1.6) y usá `npm install` en su carpeta principal.
 3. Se puede utilizar los [Docs](https://ezeholz.github.io/Acamica/tercerProyecto/docs) de forma remota para interactuar con la API, aunque está preparada solo para utilizarse de forma local
 
 ### Uso
