@@ -1,7 +1,26 @@
+var lic = `
+   Copyright 2020 Ezequiel G. Holzweissig
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+`
+console.log(lic)
+
 const express = require('express');
 const mysql = require('sqlite3')//.verbose();
 const jwt = require('jsonwebtoken')
 const cors = require('cors')
+
+
 
 // Token
 
@@ -59,7 +78,7 @@ db.parallelize(function() {
         })
         db.run("INSERT INTO usuarios(id, username, password, nombre, correo, telefono, dir) VALUES ('0','admin','admin','admin','admin','0','admin')",function(err) {
             if(err) throw err
-            console.log("Hecho admin")
+            console.log("Hecho Administrador (admin admin)")
         })
     })
 
@@ -98,8 +117,7 @@ app.get('/pedidos\*',async function(req,res) {
             if(req.originalUrl.split('/')[2]!=undefined){
                 db.get('SELECT * FROM pedidos WHERE id = ?',req.originalUrl.split('/')[2],function(err,row) {
                     if(err) {
-                        res.status(404).send(err)
-                        console.log(err)
+                        res.status(404).send(err.message)
                         return
                     }
                     res.status(200).json(row)
@@ -107,8 +125,7 @@ app.get('/pedidos\*',async function(req,res) {
             } else if(req.originalUrl.split('/')[2]==undefined) {
                 db.all('SELECT * FROM pedidos', function(err, rows) {
                     if(err) {
-                        res.status(404).send(err)
-                        console.log(err)
+                        res.status(404).send(err.message)
                         return
                     }
                     res.status(200).json(rows)
@@ -130,8 +147,7 @@ app.post('/pedidos\*',async function(req,res) {
         const newProd = [0,hora.split(":")[0] +":"+ hora.split(":")[1],req.body.prod,usuarioID,req.body.pago]
         db.run('INSERT INTO pedidos(status, hora, prod, usuario, pago) VALUES (?,?,?,?,?)',newProd,function(err) {
             if(err) {
-                res.status(404).send(err)
-                console.log(err)
+                res.status(404).send(err.message)
                 return
             }
             res.sendStatus(200)
@@ -203,8 +219,7 @@ app.get('/productos\*',async function(req,res) {
         if(req.originalUrl.split('/')[2]!=undefined){
             db.get('SELECT * FROM productos WHERE id = ?',req.originalUrl.split('/')[2],function(err,row) {
                 if(err) {
-                    res.status(404).send(err)
-                    console.log(err)
+                    res.status(404).send(err.message)
                     return
                 }
                 res.status(200).json(row)
@@ -212,8 +227,7 @@ app.get('/productos\*',async function(req,res) {
         } else if(req.originalUrl.split('/')[2]==undefined) {
             db.all('SELECT * FROM productos', function(err, rows) {
                 if(err) {
-                    res.status(404).send(err)
-                    console.log(err)
+                    res.status(404).send(err.message)
                     return
                 }
                 res.status(200).json(rows)
@@ -231,8 +245,7 @@ app.post('/productos',async function(req,res) {
             const newProd = [req.body.nombre,req.body.short,req.body.img,req.body.precio]
             db.run('INSERT INTO productos(nombre, short, img, precio) VALUES (?,?,?,?)',newProd,function(err) {
                 if(err) {
-                    res.status(400).send(err)
-                    console.log(err)
+                    res.status(400).send(err.message)
                     return
                 }
                 res.sendStatus(200)
@@ -301,6 +314,22 @@ app.get('/usuarios\*', async function(req,res) {
     } else {
         res.sendStatus(404)
     }
+})
+
+app.put('/usuarios\*',function(req,res){
+    res.sendStatus(418)
+})
+
+app.delete('/usuarios\*',function(req,res){
+    res.sendStatus(418)
+})
+
+app.delete('/pedidos\*', function(req,res){
+    res.sendStatus(418)
+})
+
+app.get('/coffee',function(req,res){
+    res.sendStatus(418)
 })
 
 const listener = app.listen(8000, function() {

@@ -2,12 +2,16 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Delilah Resto",
-    "version": "1.1.0",
+    "version": "1.1.6",
     "description": "Delilah Resto API se compone de endpoints preparados para una aplicación de pedidos, donde le permitiría a los usuarios registrarse, hacer su pedido de acuerdo a productos existentes, y enviarlo. También se brindarán endpoints para administradores, que podran ver los pedidos, actualizarlos, así como actualizar los productos, agregar nuevos, o eliminarlos",
     "contact": {
       "name": "Ezequiel G. Holzweissig",
       "url": "https://ezeholz.github.io",
       "email": "ezequielgh1999@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
   "servers": [
@@ -48,26 +52,16 @@
         ],
         "responses": {
           "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Pedidos"
-                  }
-                }
-              }
-            }
+            "$ref": "#/components/responses/arrayPedido"
           },
           "401": {
-            "description": ""
+            "$ref": "#/components/responses/401"
           },
           "403": {
-            "description": ""
+            "$ref": "#/components/responses/403"
           },
           "404": {
-            "description": ""
+            "$ref": "#/components/responses/404"
           }
         }
       },
@@ -86,13 +80,13 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "$ref": "#/components/responses/200"
           },
           "400": {
-            "description": ""
+            "$ref": "#/components/responses/400"
           },
           "401": {
-            "description": ""
+            "$ref": "#/components/responses/401"
           }
         }
       }
@@ -124,13 +118,13 @@
             "$ref": "#/components/responses/Pedido"
           },
           "401": {
-            "description": ""
+            "$ref": "#/components/responses/401"
           },
           "403": {
-            "description": ""
+            "$ref": "#/components/responses/403"
           },
           "404": {
-            "description": ""
+            "$ref": "#/components/responses/404"
           }
         }
       },
@@ -163,16 +157,16 @@
             "$ref": "#/components/responses/Pedido"
           },
           "400": {
-            "description": ""
+            "$ref": "#/components/responses/400"
           },
           "401": {
-            "description": ""
+            "$ref": "#/components/responses/401"
           },
           "403": {
-            "description": ""
+            "$ref": "#/components/responses/403"
           },
           "404": {
-            "description": ""
+            "$ref": "#/components/responses/404"
           }
         }
       }
@@ -190,13 +184,13 @@
         ],
         "responses": {
           "200": {
-            "$ref": "#/components/responses/Producto"
+            "$ref": "#/components/responses/arrayProducto"
           },
           "401": {
-            "description": ""
+            "$ref": "#/components/responses/401"
           },
           "404": {
-            "description": ""
+            "$ref": "#/components/responses/404"
           }
         }
       },
@@ -215,16 +209,16 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "$ref": "#/components/responses/200"
           },
           "400": {
-            "description": ""
+            "$ref": "#/components/responses/400"
           },
           "401": {
-            "description": ""
+            "$ref": "#/components/responses/401"
           },
           "403": {
-            "description": ""
+            "$ref": "#/components/responses/403"
           }
         }
       }
@@ -256,10 +250,10 @@
             "$ref": "#/components/responses/Producto"
           },
           "401": {
-            "description": ""
+            "$ref": "#/components/responses/401"
           },
           "404": {
-            "description": ""
+            "$ref": "#/components/responses/404"
           }
         }
       },
@@ -292,16 +286,16 @@
             "$ref": "#/components/responses/Producto"
           },
           "400": {
-            "description": ""
+            "$ref": "#/components/responses/400"
           },
           "401": {
-            "description": ""
+            "$ref": "#/components/responses/401"
           },
           "403": {
-            "description": ""
+            "$ref": "#/components/responses/403"
           },
           "404": {
-            "description": ""
+            "$ref": "#/components/responses/404"
           }
         }
       },
@@ -328,16 +322,16 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "$ref": "#/components/responses/200"
           },
           "401": {
-            "description": ""
+            "$ref": "#/components/responses/401"
           },
           "403": {
-            "description": ""
+            "$ref": "#/components/responses/403"
           },
           "404": {
-            "description": ""
+            "$ref": "#/components/responses/404"
           }
         }
       }
@@ -353,10 +347,10 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "$ref": "#/components/responses/200"
           },
           "400": {
-            "description": ""
+            "$ref": "#/components/responses/400"
           }
         }
       }
@@ -366,7 +360,7 @@
         "tags": [
           "Usuarios"
         ],
-        "summary": "Loguea al usuario",
+        "summary": "Loguear al usuario",
         "parameters": [
           {
             "name": "username",
@@ -393,7 +387,7 @@
             "$ref": "#/components/responses/token"
           },
           "404": {
-            "description": ""
+            "$ref": "#/components/responses/404"
           }
         }
       }
@@ -403,7 +397,7 @@
         "tags": [
           "Usuarios"
         ],
-        "summary": "Desloguea al usuario",
+        "summary": "Desloguear al usuario",
         "security": [
           {
             "Auth": []
@@ -411,10 +405,10 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "$ref": "#/components/responses/200"
           },
           "401": {
-            "description": ""
+            "$ref": "#/components/responses/401"
           }
         }
       }
@@ -422,25 +416,41 @@
   },
   "components": {
     "responses": {
+      "200": {
+        "description": "```\nOK\n```\n"
+      },
+      "400": {
+        "description": "```\nBad Request\n```\n"
+      },
+      "401": {
+        "description": "```\nUnauthorized\n```\n"
+      },
+      "403": {
+        "description": "```\nForbidden\n```\n"
+      },
+      "404": {
+        "description": "```\nNot Found\n```\n"
+      },
+      "418": {
+        "description": "```\nI'm a teapot\n```\n"
+      },
       "Producto": {
-        "description": "",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Producto"
-            }
-          }
-        }
+        "description": "```\n{\n  \"nombre\": \"string\",\n  \"short\": \"string\",\n  \"img\": \"string\",\n  \"precio\": 0\n}\n```\n"
+      },
+      "arrayProducto": {
+        "description": "```\n[\n  {\n    \"nombre\": \"string\",\n    \"short\": \"string\",\n    \"img\": \"string\",\n    \"precio\": 0\n  }, {...}\n]\n```\n"
+      },
+      "Pedido2": {
+        "description": "```\n{\n  \"Cliente\": {\n    \"nombre\": \"string\",\n    \"direccion\": \"string\",\n    \"telefono\": 0\n  },\n  \"Productos\": [\n    {\n      \"Cantidad\": 0,\n      \"Producto\": {\n        \"nombre\": \"string\",\n        \"short\": \"string\",\n        \"img\": \"string\",\n        \"precio\": 0\n      }, {...}\n    }\n  ],\n  \"Hora\": \"16:42\",\n  \"Status\": 0,\n  \"Efectivo\": true\n}\n```\n"
       },
       "Pedido": {
-        "description": "",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Pedidos"
-            }
-          }
-        }
+        "description": "```\n{\n  \"status\": 0,\n  \"hora\": \"16:42\",\n  \"prod\": \"3,4,6,1,0,2\",\n  \"usuario\": 0,\n  \"pago\": true\n}\n```\n"
+      },
+      "arrayPedido2": {
+        "description": "```\n[\n  {\n    \"Cliente\": {\n      \"nombre\": \"string\",\n      \"direccion\": \"string\",\n      \"telefono\": 0\n    },\n    \"Productos\": [\n      {\n        \"Cantidad\": 0,\n        \"Producto\": {\n          \"nombre\": \"string\",\n          \"short\": \"string\",\n          \"img\": \"string\",\n          \"precio\": 0\n        }\n      }, {...}\n    ],\n    \"Hora\": \"16:42\",\n    \"Status\": 0,\n    \"Efectivo\": true\n  }, {...}\n]\n```\n"
+      },
+      "arrayPedido": {
+        "description": "```\n[\n  {\n    \"status\": 0,\n    \"hora\": \"16:42\",\n    \"prod\": \"3,4,6,1,0,2\",\n    \"usuario\": 0,\n    \"pago\": true\n  }, {...}\n]\n```\n"
       },
       "token": {
         "description": "",
@@ -467,7 +477,7 @@
     },
     "requestBodies": {
       "Producto": {
-        "description": "Producto a crear",
+        "description": "",
         "required": true,
         "content": {
           "application/json": {
@@ -478,7 +488,7 @@
         }
       },
       "Usuario": {
-        "description": "Usuario a crear",
+        "description": "",
         "required": true,
         "content": {
           "application/json": {
@@ -489,7 +499,7 @@
         }
       },
       "Nota": {
-        "description": "Nota de pedido a realizar",
+        "description": "",
         "required": true,
         "content": {
           "application/json": {
