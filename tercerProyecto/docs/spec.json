@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Delilah Resto",
-    "version": "1.1.6",
+    "version": "1.1.7",
     "description": "Delilah Resto API se compone de endpoints preparados para una aplicación de pedidos, donde le permitiría a los usuarios registrarse, hacer su pedido de acuerdo a productos existentes, y enviarlo. También se brindarán endpoints para administradores, que podran ver los pedidos, actualizarlos, así como actualizar los productos, agregar nuevos, o eliminarlos",
     "contact": {
       "name": "Ezequiel G. Holzweissig",

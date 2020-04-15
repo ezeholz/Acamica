@@ -147,7 +147,7 @@ app.post('/pedidos\*',async function(req,res) {
         const newProd = [0,hora.split(":")[0] +":"+ hora.split(":")[1],req.body.prod,usuarioID,req.body.pago]
         db.run('INSERT INTO pedidos(status, hora, prod, usuario, pago) VALUES (?,?,?,?,?)',newProd,function(err) {
             if(err) {
-                res.status(404).send(err.message)
+                res.status(400).send(err.message)
                 return
             }
             res.sendStatus(200)
