@@ -4,7 +4,7 @@
 También se brindarán endpoints para administradores, que podrán ver los pedidos, actualizarlos, así como actualizar los productos, agregar nuevos, o eliminarlos
 
 Fecha de inicio del trabajo: 08/04/20\
-Fecha de entrega del trabajo: --/--/20
+Fecha de entrega del trabajo: 17/04/20
 
 ## Instalación
 
@@ -18,6 +18,12 @@ Fecha de entrega del trabajo: --/--/20
 
 #### `npm start`
 Con este comando, podrás iniciar el servidor. Luego todo se hace utilizando la dirección que necesites. Para más información sobre endpoints, visita los [Docs](https://ezeholz.github.io/Acamica/tercerProyecto/docs)
+
+### Usuario Administrador
+El servidor cuenta por defecto con un usuario administrador, el cual tanto el usuario como la contraseña es admin admin.
+
+### Bearer Token
+El servidor utiliza la forma de autentificación Bearer para loguearse como usuario.
 
 ### To Do
 - [ ] Agregar más endpoints

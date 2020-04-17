@@ -3,7 +3,9 @@
 Este repositorio sirve a modo de placeholder para todos los proyectos que desarrollé dentro de la carrera de FullStack de [Acámica](https://www.acamica.com)
 
 Fecha de inicio: 03/09/19\
-Fecha de finalización: --/--/20
+Fecha de finalización: 17/04/20
+
+Pese haya finalizado, en los próximos días seguiré iterando sobre los diferentes trabajos para dejarlos pulidos y poder agregarlos a un próximo portfolio.
 
 ## Contenidos Aprendidos
 
