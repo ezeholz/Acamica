@@ -14,6 +14,9 @@ Fecha de entrega del trabajo: 17/04/20
 2. [Descargá la última versión](https://github.com/ezeholz/Acamica/releases/tag/3.1.1.6) y usá `npm install` en su carpeta principal.
 3. Se puede utilizar los [Docs](https://ezeholz.github.io/Acamica/tercerProyecto/docs) de forma remota para interactuar con la API, aunque está preparada solo para utilizarse de forma local
 
+### Online
+De forma alternativa, se puede probar online. Solamente hace falta utilizar los Docs, y poner el servidor hacia https://delilah-ezeholz.glitch.me
+
 ### Uso
 
 #### `npm start`

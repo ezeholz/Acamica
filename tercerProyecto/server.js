@@ -83,7 +83,7 @@ db.parallelize(function() {
     })
 
     db.serialize(function(){
-        sql = 'CREATE TABLE productos (id INTEGER PRIMARY KEY, nombre VARCHAR(255) NOT NULL'
+        let sql = 'CREATE TABLE productos (id INTEGER PRIMARY KEY, nombre VARCHAR(255) NOT NULL'
         sql = sql+', short VARCHAR(255) NOT NULL UNIQUE, img VARCHAR(255), precio INT UNSIGNED NOT NULL'
         db.run(sql+')',function(err) {
             if(err) throw err;
@@ -92,7 +92,7 @@ db.parallelize(function() {
     })
 
     db.serialize(function(){
-        sql = 'CREATE TABLE pedidos (id INTEGER PRIMARY KEY, status INT UNSIGNED NOT NULL'
+        let sql = 'CREATE TABLE pedidos (id INTEGER PRIMARY KEY, status INT UNSIGNED NOT NULL'
         sql = sql+', hora VARCHAR(5) NOT NULL, prod VARCHAR(255) NOT NULL' // prod van a ser las ids
         sql = sql+', usuario INT UNSIGNED NOT NULL, pago INT UNSIGNED NOT NULL' // 0 o 1 para efectivo
         db.run(sql+')',function(err) {
@@ -111,6 +111,7 @@ app.use(cors())
 // // Pedidos
 
 app.get('/pedidos\*',async function(req,res) {
+    if(!req.headers.authorization) {res.sendStatus(401);return;}
     const usuario = await verificarToken(req.headers.authorization.split(" ")[1])
     if (usuario) {
         if (usuario == "admin") {
@@ -138,6 +139,7 @@ app.get('/pedidos\*',async function(req,res) {
 })
 
 app.post('/pedidos\*',async function(req,res) {
+    if(!req.headers.authorization) {res.sendStatus(401);return;}
     const usuario = await verificarToken(req.headers.authorization.split(" ")[1])
     if (usuario) {
         let usuarioID = await new Promise(function(resolve){
@@ -195,6 +197,7 @@ app.post('/pedidos\*',async function(req,res) {
 // }
 
 app.put('/pedidos\*',async function(req,res) {
+    if(!req.headers.authorization) {res.sendStatus(401);return;}
     const usuario = await verificarToken(req.headers.authorization.split(" ")[1])
     if (usuario) {
         if (usuario == "admin") {
@@ -214,6 +217,7 @@ app.put('/pedidos\*',async function(req,res) {
 // // Productos
 
 app.get('/productos\*',async function(req,res) {
+    if(!req.headers.authorization) {res.sendStatus(401);return;}
     const usuario = await verificarToken(req.headers.authorization.split(" ")[1])
     if (usuario) {
         if(req.originalUrl.split('/')[2]!=undefined){
@@ -239,6 +243,7 @@ app.get('/productos\*',async function(req,res) {
 })
 
 app.post('/productos',async function(req,res) {
+    if(!req.headers.authorization) {res.sendStatus(401);return;}
     const usuario = await verificarToken(req.headers.authorization.split(" ")[1])
     if (usuario) {
         if (usuario == "admin") {
@@ -255,6 +260,7 @@ app.post('/productos',async function(req,res) {
 })
 
 app.put('/productos\*',async function(req,res) {
+    if(!req.headers.authorization) {res.sendStatus(401);return;}
     const usuario = await verificarToken(req.headers.authorization.split(" ")[1])
     if (usuario) {
         if (usuario == "admin") {
@@ -272,6 +278,7 @@ app.put('/productos\*',async function(req,res) {
 })
 
 app.delete('/productos\*',async function(req,res) {
+    if(!req.headers.authorization) {res.sendStatus(401);return;}
     const usuario = await verificarToken(req.headers.authorization.split(" ")[1])
     if (usuario) {
         if (usuario == "admin") {
