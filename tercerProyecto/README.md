@@ -28,7 +28,7 @@ El servidor cuenta por defecto con un usuario administrador, el cual tanto el us
 ### Bearer Token
 El servidor utiliza la forma de autentificación Bearer para loguearse como usuario.
 
-### To Do
+## To Do
 - [ ] Agregar más endpoints
 - [ ] Mejorar el código
 - [ ] Utilizar más comentarios
