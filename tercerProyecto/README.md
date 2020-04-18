@@ -17,7 +17,7 @@ Fecha de entrega del trabajo: 17/04/20
 ### Online
 De forma alternativa, se puede probar online. Solamente hace falta utilizar los Docs, y poner el servidor hacia https://delilah-ezeholz.glitch.me
 
-### Uso
+## Uso
 
 #### `npm start`
 Con este comando, podrás iniciar el servidor. Luego todo se hace utilizando la dirección que necesites. Para más información sobre endpoints, visita los [Docs](https://ezeholz.github.io/Acamica/tercerProyecto/docs)
