@@ -15,7 +15,7 @@ Fecha de entrega del trabajo: 17/04/20
 3. Se puede utilizar los [Docs](https://ezeholz.github.io/Acamica/tercerProyecto/docs) de forma remota para interactuar con la API, aunque está preparada solo para utilizarse de forma local
 
 ### Online
-De forma alternativa, se puede probar online. Solamente hace falta utilizar los Docs, y poner el servidor hacia https://delilah-ezeholz.glitch.me
+De forma alternativa, se puede probar online. Solamente hace falta utilizar los Docs, y poner el servidor hacia https://delilah-resto-ezeholz.herokuapp.com
 
 ## Uso
 
