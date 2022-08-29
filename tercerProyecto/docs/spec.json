@@ -2,12 +2,12 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Delilah Resto",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "Delilah Resto API se compone de endpoints preparados para una aplicación de pedidos, donde le permitiría a los usuarios registrarse, hacer su pedido de acuerdo a productos existentes, y enviarlo. También se brindarán endpoints para administradores, que podran ver los pedidos, actualizarlos, así como actualizar los productos, agregar nuevos, o eliminarlos",
     "contact": {
       "name": "Ezequiel G. Holzweissig",
       "url": "https://ezeholz.github.io",
-      "email": "ezequielgh1999@gmail.com"
+      "email": "hello@ezeholz.com.ar"
     },
     "license": {
       "name": "Apache 2.0",
@@ -16,8 +16,12 @@
   },
   "servers": [
     {
-      "url": "https://delilah-resto-ezeholz.herokuapp.com/",
+      "url": "https://api.acamica.ezeholz.com.ar/",
       "description": "Testing IP"
+    },
+    {
+      "url": "https://delilah-resto-ezeholz.herokuapp.com/",
+      "description": "Testing IP - Heroku (Deprecated)"
     },
     {
       "url": "http://localhost:8000",
